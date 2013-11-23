@@ -1,5 +1,5 @@
 //
-//  tvshowViewController.h
+//  detailedShowViewController.h
 //  TvShow
 //
 //  Created by Shazib Hussain on 22/11/2013.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface tvshowViewController : UITableViewController
+@interface detailedShowViewController : UIViewController
 
-@property (nonatomic, strong) NSMutableArray *series;
+@property int index;
 
 @end

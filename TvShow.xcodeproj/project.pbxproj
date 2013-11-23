@@ -21,6 +21,9 @@
 		FC84CC56183F85D500ACCE26 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC84CC38183F85D500ACCE26 /* UIKit.framework */; };
 		FC84CC5E183F85D500ACCE26 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC84CC5C183F85D500ACCE26 /* InfoPlist.strings */; };
 		FC84CC60183F85D500ACCE26 /* TvShowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC5F183F85D500ACCE26 /* TvShowTests.m */; };
+		FC84CC6B183F9E9A00ACCE26 /* tvseries.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC6A183F9E9A00ACCE26 /* tvseries.m */; };
+		FC84CC74183FDA3E00ACCE26 /* detailedShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC73183FDA3E00ACCE26 /* detailedShowViewController.m */; };
+		FC84CC77183FE2A600ACCE26 /* searchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC76183FE2A600ACCE26 /* searchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,12 @@
 		FC84CC5B183F85D500ACCE26 /* TvShowTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TvShowTests-Info.plist"; sourceTree = "<group>"; };
 		FC84CC5D183F85D500ACCE26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC84CC5F183F85D500ACCE26 /* TvShowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TvShowTests.m; sourceTree = "<group>"; };
+		FC84CC69183F9E9A00ACCE26 /* tvseries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tvseries.h; sourceTree = "<group>"; };
+		FC84CC6A183F9E9A00ACCE26 /* tvseries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tvseries.m; sourceTree = "<group>"; };
+		FC84CC72183FDA3E00ACCE26 /* detailedShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = detailedShowViewController.h; sourceTree = "<group>"; };
+		FC84CC73183FDA3E00ACCE26 /* detailedShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailedShowViewController.m; sourceTree = "<group>"; };
+		FC84CC75183FE2A600ACCE26 /* searchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchViewController.h; sourceTree = "<group>"; };
+		FC84CC76183FE2A600ACCE26 /* searchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +128,12 @@
 				FC84CC4A183F85D500ACCE26 /* tvshowViewController.m */,
 				FC84CC4C183F85D500ACCE26 /* Images.xcassets */,
 				FC84CC3B183F85D500ACCE26 /* Supporting Files */,
+				FC84CC69183F9E9A00ACCE26 /* tvseries.h */,
+				FC84CC6A183F9E9A00ACCE26 /* tvseries.m */,
+				FC84CC72183FDA3E00ACCE26 /* detailedShowViewController.h */,
+				FC84CC73183FDA3E00ACCE26 /* detailedShowViewController.m */,
+				FC84CC75183FE2A600ACCE26 /* searchViewController.h */,
+				FC84CC76183FE2A600ACCE26 /* searchViewController.m */,
 			);
 			path = TvShow;
 			sourceTree = "<group>";
@@ -251,7 +266,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC84CC4B183F85D500ACCE26 /* tvshowViewController.m in Sources */,
+				FC84CC74183FDA3E00ACCE26 /* detailedShowViewController.m in Sources */,
 				FC84CC41183F85D500ACCE26 /* main.m in Sources */,
+				FC84CC6B183F9E9A00ACCE26 /* tvseries.m in Sources */,
+				FC84CC77183FE2A600ACCE26 /* searchViewController.m in Sources */,
 				FC84CC45183F85D500ACCE26 /* tvshowAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +401,7 @@
 				GCC_PREFIX_HEADER = "TvShow/TvShow-Prefix.pch";
 				INFOPLIST_FILE = "TvShow/TvShow-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -396,6 +415,7 @@
 				GCC_PREFIX_HEADER = "TvShow/TvShow-Prefix.pch";
 				INFOPLIST_FILE = "TvShow/TvShow-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

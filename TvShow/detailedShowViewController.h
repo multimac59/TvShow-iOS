@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "tvseries.h"
 
 @interface detailedShowViewController : UIViewController
 
 @property int index;
+
+@property (nonatomic) tvseries * series;
+
+@property IBOutlet UITextView *overview;
+
+@property IBOutlet UIImageView *banner;
 
 @end

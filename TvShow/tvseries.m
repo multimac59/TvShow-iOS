@@ -10,4 +10,12 @@
 
 @implementation tvseries
 
+@synthesize seriesId;
+@synthesize name;
+@synthesize banner;
+@synthesize firstAired;
+@synthesize network;
+@synthesize imdb;
+@synthesize overview;
+
 @end

@@ -24,6 +24,8 @@
 		FC84CC6B183F9E9A00ACCE26 /* tvseries.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC6A183F9E9A00ACCE26 /* tvseries.m */; };
 		FC84CC74183FDA3E00ACCE26 /* detailedShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC73183FDA3E00ACCE26 /* detailedShowViewController.m */; };
 		FC84CC77183FE2A600ACCE26 /* searchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC76183FE2A600ACCE26 /* searchViewController.m */; };
+		FC8B49E7184472EB007C3811 /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49E6184472EB007C3811 /* WebService.m */; };
+		FC8B49EB1845A6B9007C3811 /* GetSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49EA1845A6B9007C3811 /* GetSeries.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,11 @@
 		FC84CC73183FDA3E00ACCE26 /* detailedShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailedShowViewController.m; sourceTree = "<group>"; };
 		FC84CC75183FE2A600ACCE26 /* searchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchViewController.h; sourceTree = "<group>"; };
 		FC84CC76183FE2A600ACCE26 /* searchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchViewController.m; sourceTree = "<group>"; };
+		FC8B49E5184472EB007C3811 /* WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
+		FC8B49E6184472EB007C3811 /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
+		FC8B49E81845A6A5007C3811 /* GetSeriesDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetSeriesDelegate.h; sourceTree = "<group>"; };
+		FC8B49E91845A6B9007C3811 /* GetSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetSeries.h; sourceTree = "<group>"; };
+		FC8B49EA1845A6B9007C3811 /* GetSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetSeries.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +141,7 @@
 				FC84CC73183FDA3E00ACCE26 /* detailedShowViewController.m */,
 				FC84CC75183FE2A600ACCE26 /* searchViewController.h */,
 				FC84CC76183FE2A600ACCE26 /* searchViewController.m */,
+				FC8B49E018443D20007C3811 /* Web Services */,
 			);
 			path = TvShow;
 			sourceTree = "<group>";
@@ -165,6 +173,18 @@
 				FC84CC5C183F85D500ACCE26 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FC8B49E018443D20007C3811 /* Web Services */ = {
+			isa = PBXGroup;
+			children = (
+				FC8B49E5184472EB007C3811 /* WebService.h */,
+				FC8B49E6184472EB007C3811 /* WebService.m */,
+				FC8B49E81845A6A5007C3811 /* GetSeriesDelegate.h */,
+				FC8B49E91845A6B9007C3811 /* GetSeries.h */,
+				FC8B49EA1845A6B9007C3811 /* GetSeries.m */,
+			);
+			name = "Web Services";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +286,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC84CC4B183F85D500ACCE26 /* tvshowViewController.m in Sources */,
+				FC8B49EB1845A6B9007C3811 /* GetSeries.m in Sources */,
+				FC8B49E7184472EB007C3811 /* WebService.m in Sources */,
 				FC84CC74183FDA3E00ACCE26 /* detailedShowViewController.m in Sources */,
 				FC84CC41183F85D500ACCE26 /* main.m in Sources */,
 				FC84CC6B183F9E9A00ACCE26 /* tvseries.m in Sources */,
@@ -481,6 +503,7 @@
 				FC84CC65183F85D500ACCE26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FC84CC66183F85D500ACCE26 /* Build configuration list for PBXNativeTarget "TvShowTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +512,7 @@
 				FC84CC68183F85D500ACCE26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

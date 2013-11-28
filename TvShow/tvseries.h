@@ -22,7 +22,7 @@
 
 @property (nonatomic, copy) NSString *overview;
 
-@property (nonatomic, copy) NSString *genre;
+@property (nonatomic, copy) NSString *imdb;
 
 
 @end

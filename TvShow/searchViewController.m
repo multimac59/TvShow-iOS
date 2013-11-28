@@ -8,12 +8,16 @@
 
 #import "searchViewController.h"
 #import "tvseries.h"
+#import "GetSeries.h"
 
 @interface searchViewController ()
 
 @end
 
 @implementation searchViewController
+
+@synthesize searchResults;
+@synthesize progress;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -34,50 +38,7 @@
     // Setup search bar
     self.filmSearch.delegate = self;
     
-    // Custom Logic
-    // Create array
-    _series = [NSMutableArray arrayWithCapacity:20];
-    
-    // Create some tvseries objects for displaying
-    
-    // Create new object and assign values
-    tvseries *exampleseries = [[tvseries alloc] init];
-    exampleseries.name = @"Buffy The Vampire Slayer";
-    exampleseries.seriesId = @"12345";
-    exampleseries.network = @"HBO";
-    exampleseries.banner = @"/poster/img6669.jpg";
-    exampleseries.overview = @"The exciting blah blah of Buffy the Vampire Slayer";
-    exampleseries.firstAired = @"12/12/12";
-    exampleseries.genre = @"Horror|Fantasy";
-    // Add object to array
-    [_series addObject:exampleseries];
-    
-    // Resassign values
-    exampleseries = [[tvseries alloc] init];
-    exampleseries.name = @"Breaking Bad";
-    exampleseries.seriesId = @"12345";
-    exampleseries.network = @"HBO";
-    exampleseries.banner = @"/poster/img6669.jpg";
-    exampleseries.overview = @"The exciting blah blah of Buffy the Vampire Slayer";
-    exampleseries.firstAired = @"12/12/12";
-    exampleseries.genre = @"Horror|Fantasy";
-    // Add object to array
-    [_series addObject:exampleseries];
-    
-    // Resassign Values
-    exampleseries = [[tvseries alloc] init];
-    exampleseries.name = @"The Walking Dead";
-    exampleseries.seriesId = @"12345";
-    exampleseries.network = @"HBO";
-    exampleseries.banner = @"/poster/img6669.jpg";
-    exampleseries.overview = @"The exciting blah blah of Buffy the Vampire Slayer";
-    exampleseries.firstAired = @"12/12/12";
-    exampleseries.genre = @"Horror|Fantasy";
-    // Add object to array
-    [_series addObject:exampleseries];
-    
-    self.series = _series;
-
+  
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,7 +60,7 @@
 {
 
     // Return the number of rows in the section.
-    return [self.series count];
+    return [self.searchResults count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,7 +68,7 @@
     // Linking cells with identifier specified for prototpye cells
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"seriesCell"];
     // Create an instance of tvseries from the array which has the objects created earlier
-    tvseries *exampleSeries = (self.series)[indexPath.row];
+    tvseries *exampleSeries = (self.searchResults)[indexPath.row];
     
     // Set the values.
     cell.textLabel.text = exampleSeries.name;
@@ -115,7 +76,7 @@
     return cell;
 }
 
-
+// When a cell is clicked
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%@", indexPath);
@@ -125,48 +86,73 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSLog(@"i was searchded");
-    // searchBar.text
+   
+    // Debug Logging.
+    NSLog(@"search button pressed");
+    // Set search term.
+    NSString *searchTerm = [searchBar text];
+    
+    //Create and init service with search term.
+    GetSeries *service = [[GetSeries alloc] init];
+    NSLog(@"create service");
+    service.searchTerm = searchTerm;
+    NSLog(@"set search term");
+    [service setDelegate:self];
+    NSLog(@"set delegate");
+    
+    [self.searchResults removeAllObjects];
+    NSLog(@"objects removed");
+    
+    [service main];
+    NSLog(@"main method executed");
+    [[self tableView] reloadData];
+    NSLog(@"tableview reloaded in searchbuttonclicked");
+    
+    progress = [[UIActivityIndicatorView alloc ]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.view addSubview:progress];
+    progress.center = CGPointMake(self.view.frame.size.width / 2, (self.view.frame.size.height / 8) - 5);
+    [progress startAnimating];
+    [searchBar resignFirstResponder];
+    
+    
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    [searchResults removeAllObjects];
+    [[self tableView] reloadData];
 }
-*/
+- (void) serviceFinished:(id)service withError:(BOOL)error  {
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+    
+    if (!error) {
+        [searchResults removeAllObjects];
+        self.searchResults = [service shows];
+        
+        // If no results found
+        if ([searchResults count] == 0){
+            NSLog(@"no results");
+            UIAlertView *noResults = [[UIAlertView alloc] initWithTitle:@"Problem!" message:@"No Search Results Found" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [noResults performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+        } else {
+            // Reload tableview
+            [progress performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];
+            [self.tableView performSelectorOnMainThread:@selector(reloadData)
+                                             withObject:nil
+                                          waitUntilDone:NO];
+            NSLog(@"tablewview reloaded in servicefinishedwitherror");
+        }
+        
+    }
+    else {
+        NSLog(@"Error");
+        UIAlertView *noResults = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"There was an error with your search" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        //[noResults show];
+        [noResults performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+    }
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Navigation
@@ -176,11 +162,48 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-   
-  // ((detailedShowViewController*)segue.destinationViewController).index = self.atIndex
     ((detailedShowViewController*)segue.destinationViewController).index = [self.tableView indexPathForCell:(UITableViewCell*)sender].row;
-
+    ((detailedShowViewController*)segue.destinationViewController).series = searchResults[[self.tableView indexPathForCell:(UITableViewCell*)sender].row];
 }
+
+/*
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
+
+/*
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
+
+/*
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
+
+/*
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 //MenuViewController *menu = [navController.storyboard instantiateViewControllerWithIdentifier:@"MenuController"];
 

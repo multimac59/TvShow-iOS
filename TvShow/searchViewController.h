@@ -9,13 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "detailedShowViewController.h"
 
-@interface searchViewController : UITableViewController <UISearchBarDelegate>
+
+#import "GetSeriesDelegate.h"
+#import "GetSeries.h"
+
+@interface searchViewController : UITableViewController <UISearchBarDelegate, GetSeriesDelegate>
 
 @property (nonatomic, retain) IBOutlet UISearchBar *filmSearch;
 
-
-@property (nonatomic, strong) NSMutableArray *series;
+@property (nonatomic, strong) NSMutableArray *searchResults;
 
 @property (nonatomic) int atIndex;
+
+@property (nonatomic) UIActivityIndicatorView *progress;
 
 @end

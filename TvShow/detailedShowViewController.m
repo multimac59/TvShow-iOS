@@ -41,6 +41,12 @@
     network.text = [NSString stringWithFormat:@"Network: %@",series.network];
     navBar.title = series.name;
     
+    UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+    UIBarButtonItem *btnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(share)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnAdd, btnShare, nil]];
+     
+    
+    
     if ([series.imdb length] > 3) {
         
         [imdb setTitle:@"IMDB Page" forState:UIControlStateNormal];

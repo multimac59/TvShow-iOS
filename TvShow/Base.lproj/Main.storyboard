@@ -163,9 +163,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="y92-sO-rkj">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="NeE-sZ-fwD"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="y92-sO-rkj"/>
                     <connections>
                         <outlet property="airDate" destination="kGi-IS-eVx" id="4Jk-kB-6lR"/>
                         <outlet property="banner" destination="giu-8T-yTo" id="8ze-Hd-Fpk"/>

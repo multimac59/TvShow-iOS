@@ -9,14 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "tvseries.h"
 
-@interface detailedShowViewController : UIViewController
+@interface detailedShowViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property int index;
+@property IBOutlet UILabel *network;
+
+@property IBOutlet UILabel *airDate;
 
 @property (nonatomic) tvseries * series;
 
 @property IBOutlet UITextView *overview;
 
 @property IBOutlet UIImageView *banner;
+
+@property IBOutlet UINavigationItem *navBar;
+
+@property IBOutlet UIButton *imdb;
+
+- (void)LaunchURL;
 
 @end

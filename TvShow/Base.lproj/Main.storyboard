@@ -132,14 +132,14 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Network: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5K-hu-651">
-                                <rect key="frame" x="20" y="245" width="74" height="21"/>
+                                <rect key="frame" x="20" y="245" width="218" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Air Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGi-IS-eVx">
-                                <rect key="frame" x="20" y="274" width="67" height="21"/>
+                                <rect key="frame" x="20" y="274" width="247" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -148,15 +148,30 @@
                                 <rect key="frame" x="20" y="366" width="280" height="182"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="PLv-Zu-V46" id="CeG-Qq-yeC"/>
+                                    <outlet property="delegate" destination="PLv-Zu-V46" id="rNx-cs-e9y"/>
+                                </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4y-w6-Dwz">
+                                <rect key="frame" x="20" y="303" width="204" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="y92-sO-rkj">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="action" id="NeE-sZ-fwD"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="NeE-sZ-fwD"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="airDate" destination="kGi-IS-eVx" id="4Jk-kB-6lR"/>
                         <outlet property="banner" destination="giu-8T-yTo" id="8ze-Hd-Fpk"/>
+                        <outlet property="imdb" destination="b4y-w6-Dwz" id="XeE-gz-cRF"/>
+                        <outlet property="navBar" destination="y92-sO-rkj" id="Jo3-a2-V47"/>
+                        <outlet property="network" destination="n5K-hu-651" id="PYa-On-We8"/>
                         <outlet property="overview" destination="n8r-7H-IY7" id="DcZ-6M-TFL"/>
                     </connections>
                 </viewController>

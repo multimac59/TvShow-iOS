@@ -134,7 +134,7 @@
             NSLog(@"no results");
             UIAlertView *noResults = [[UIAlertView alloc] initWithTitle:@"Problem!" message:@"No Search Results Found" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [noResults performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
-        } else {
+            [progress performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];        } else {
             // Reload tableview
             [progress performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];
             [self.tableView performSelectorOnMainThread:@selector(reloadData)
@@ -149,7 +149,7 @@
         UIAlertView *noResults = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"There was an error with your search" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         //[noResults show];
         [noResults performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
-
+        [progress performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];
     }
 }
 
@@ -162,7 +162,7 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    ((detailedShowViewController*)segue.destinationViewController).index = [self.tableView indexPathForCell:(UITableViewCell*)sender].row;
+  //  ((detailedShowViewController*)segue.destinationViewController).index = [self.tableView indexPathForCell:(UITableViewCell*)sender].row;
     ((detailedShowViewController*)segue.destinationViewController).series = searchResults[[self.tableView indexPathForCell:(UITableViewCell*)sender].row];
 }
 

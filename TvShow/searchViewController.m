@@ -88,25 +88,25 @@
 {
    
     // Debug Logging.
-    NSLog(@"search button pressed");
+   // NSLog(@"search button pressed");
     // Set search term.
     NSString *searchTerm = [searchBar text];
     
     //Create and init service with search term.
     GetSeries *service = [[GetSeries alloc] init];
-    NSLog(@"create service");
+   // NSLog(@"create service");
     service.searchTerm = searchTerm;
-    NSLog(@"set search term");
+   // NSLog(@"set search term");
     [service setDelegate:self];
-    NSLog(@"set delegate");
+   // NSLog(@"set delegate");
     
     [self.searchResults removeAllObjects];
-    NSLog(@"objects removed");
+  //  NSLog(@"objects removed");
     
     [service main];
-    NSLog(@"main method executed");
+  //  NSLog(@"main method executed");
     [[self tableView] reloadData];
-    NSLog(@"tableview reloaded in searchbuttonclicked");
+  //  NSLog(@"tableview reloaded in searchbuttonclicked");
     
     progress = [[UIActivityIndicatorView alloc ]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.view addSubview:progress];
@@ -140,7 +140,7 @@
             [self.tableView performSelectorOnMainThread:@selector(reloadData)
                                              withObject:nil
                                           waitUntilDone:NO];
-            NSLog(@"tablewview reloaded in servicefinishedwitherror");
+          //  NSLog(@"tablewview reloaded in servicefinishedwitherror");
         }
         
     }

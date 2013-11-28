@@ -66,9 +66,11 @@
             
             // Error Checking.
             if (!ok) {
+
                 [delegate serviceFinished:self withError:YES];
             }
-            
+            NSString *temp = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+            NSLog(@"FULL OUTPUT: %@",temp);
             [delegate serviceFinished:self withError:NO];
            
             
@@ -114,9 +116,9 @@
         // Do nothing
     }
     else {
-    currentElementValue = [NSMutableString stringWithString:string];
+        currentElementValue = [NSMutableString stringWithFormat:@"%@%@",currentElementValue,string];
     }
-    NSLog(@"Processing value for : %@", currentElementValue);
+    // NSLog(@"string output: %@", currentElementValue);
 
 }
 
@@ -127,36 +129,47 @@
         // End of XML reached.
         NSLog(@"End of XML");
     }
-    if( [elementName isEqualToString:@"seriesid"]){
-        NSLog(@"seriesid in endelement: %@", currentElementValue);
+    else if( [elementName isEqualToString:@"seriesid"]){
+        // NSLog(@"seriesid in endelement: %@", currentElementValue);
         self.series.seriesId = [NSString stringWithString:currentElementValue];
-        NSLog(@"seriesid in object in endelement %@", self.series.seriesId);
+        // NSLog(@"seriesid in object in endelement %@", self.series.seriesId);
+        currentElementValue = nil;
     }
-    if( [elementName isEqualToString:@"banner"]){
-        NSLog(@"banner in endelement: %@", currentElementValue);
+    else if( [elementName isEqualToString:@"banner"]){
+        // NSLog(@"banner in endelement: %@", currentElementValue);
         self.series.banner = currentElementValue;
+        currentElementValue = nil;
     }
-    if ( [elementName isEqualToString:@"SeriesName"]) {
-        NSLog(@"SeriesName in endelement: %@", currentElementValue);
+    else if ( [elementName isEqualToString:@"SeriesName"]) {
+        // NSLog(@"SeriesName in endelement: %@", currentElementValue);
         self.series.name = currentElementValue;
+        currentElementValue = nil;
     }
-    if( [elementName isEqualToString:@"FirstAired"]){
+    else if( [elementName isEqualToString:@"FirstAired"]){
         self.series.firstAired = currentElementValue;
+        currentElementValue = nil;
     }
-    if( [elementName isEqualToString:@"Network"]){
+    else if( [elementName isEqualToString:@"Network"]){
         self.series.network = currentElementValue;
+        currentElementValue = nil;
     }
-    if( [elementName isEqualToString:@"Overview"]){
+    else if( [elementName isEqualToString:@"Overview"]){
         self.series.overview = currentElementValue;
+        // NSLog(@"OVERVIEW VALUE: %@", currentElementValue);
+        currentElementValue = nil;
     }
-    if( [elementName isEqualToString:@"IMDB_ID"]){
+    else if( [elementName isEqualToString:@"IMDB_ID"]){
         self.series.imdb = currentElementValue;
+        currentElementValue = nil;
     }
-    if( [elementName isEqualToString:@"Series"]){
+    else if( [elementName isEqualToString:@"Series"]){
         // End of object.
         [shows addObject:series];
-        NSLog(@"series name in end element: %@",self.series.name);
+        // NSLog(@"series name in end element: %@",self.series.name);
         series = nil;
+        currentElementValue = nil;
+    }
+    else {
         currentElementValue = nil;
     }
 }

@@ -25,6 +25,8 @@
 
 @property IBOutlet UIButton *imdb;
 
-- (void)LaunchURL;
 
+
+- (void)LaunchURL;
+- (void)addBtnClick;
 @end

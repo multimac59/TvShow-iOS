@@ -14,7 +14,6 @@
 		FC84CC41183F85D500ACCE26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC40183F85D500ACCE26 /* main.m */; };
 		FC84CC45183F85D500ACCE26 /* tvshowAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC44183F85D500ACCE26 /* tvshowAppDelegate.m */; };
 		FC84CC48183F85D500ACCE26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC84CC46183F85D500ACCE26 /* Main.storyboard */; };
-		FC84CC4B183F85D500ACCE26 /* tvshowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC4A183F85D500ACCE26 /* tvshowViewController.m */; };
 		FC84CC4D183F85D500ACCE26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC84CC4C183F85D500ACCE26 /* Images.xcassets */; };
 		FC84CC54183F85D500ACCE26 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC84CC53183F85D500ACCE26 /* XCTest.framework */; };
 		FC84CC55183F85D500ACCE26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC84CC34183F85D500ACCE26 /* Foundation.framework */; };
@@ -24,8 +23,10 @@
 		FC84CC6B183F9E9A00ACCE26 /* tvseries.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC6A183F9E9A00ACCE26 /* tvseries.m */; };
 		FC84CC74183FDA3E00ACCE26 /* detailedShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC73183FDA3E00ACCE26 /* detailedShowViewController.m */; };
 		FC84CC77183FE2A600ACCE26 /* searchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC84CC76183FE2A600ACCE26 /* searchViewController.m */; };
-		FC8B49E7184472EB007C3811 /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49E6184472EB007C3811 /* WebService.m */; };
 		FC8B49EB1845A6B9007C3811 /* GetSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49EA1845A6B9007C3811 /* GetSeries.m */; };
+		FC8B49ED1848A46C007C3811 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8B49EC1848A46C007C3811 /* CoreData.framework */; };
+		FC8B49F01848A49F007C3811 /* FavouritesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49EE1848A49F007C3811 /* FavouritesModel.xcdatamodeld */; };
+		FC8B49FD1848A6C4007C3811 /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49FC1848A6C4007C3811 /* Entity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,25 +51,25 @@
 		FC84CC43183F85D500ACCE26 /* tvshowAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tvshowAppDelegate.h; sourceTree = "<group>"; };
 		FC84CC44183F85D500ACCE26 /* tvshowAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tvshowAppDelegate.m; sourceTree = "<group>"; };
 		FC84CC47183F85D500ACCE26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FC84CC49183F85D500ACCE26 /* tvshowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tvshowViewController.h; sourceTree = "<group>"; };
-		FC84CC4A183F85D500ACCE26 /* tvshowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tvshowViewController.m; sourceTree = "<group>"; };
 		FC84CC4C183F85D500ACCE26 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FC84CC52183F85D500ACCE26 /* TvShowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TvShowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC84CC53183F85D500ACCE26 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		FC84CC5B183F85D500ACCE26 /* TvShowTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TvShowTests-Info.plist"; sourceTree = "<group>"; };
 		FC84CC5D183F85D500ACCE26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC84CC5F183F85D500ACCE26 /* TvShowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TvShowTests.m; sourceTree = "<group>"; };
-		FC84CC69183F9E9A00ACCE26 /* tvseries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tvseries.h; sourceTree = "<group>"; };
-		FC84CC6A183F9E9A00ACCE26 /* tvseries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tvseries.m; sourceTree = "<group>"; };
+		FC84CC69183F9E9A00ACCE26 /* tvseries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tvseries.h; path = TvShow/tvseries.h; sourceTree = "<group>"; };
+		FC84CC6A183F9E9A00ACCE26 /* tvseries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = tvseries.m; path = TvShow/tvseries.m; sourceTree = "<group>"; };
 		FC84CC72183FDA3E00ACCE26 /* detailedShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = detailedShowViewController.h; sourceTree = "<group>"; };
 		FC84CC73183FDA3E00ACCE26 /* detailedShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailedShowViewController.m; sourceTree = "<group>"; };
 		FC84CC75183FE2A600ACCE26 /* searchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchViewController.h; sourceTree = "<group>"; };
 		FC84CC76183FE2A600ACCE26 /* searchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchViewController.m; sourceTree = "<group>"; };
-		FC8B49E5184472EB007C3811 /* WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
-		FC8B49E6184472EB007C3811 /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
 		FC8B49E81845A6A5007C3811 /* GetSeriesDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetSeriesDelegate.h; sourceTree = "<group>"; };
 		FC8B49E91845A6B9007C3811 /* GetSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetSeries.h; sourceTree = "<group>"; };
 		FC8B49EA1845A6B9007C3811 /* GetSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetSeries.m; sourceTree = "<group>"; };
+		FC8B49EC1848A46C007C3811 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FC8B49EF1848A49F007C3811 /* FavouritesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavouritesModel.xcdatamodel; sourceTree = "<group>"; };
+		FC8B49FB1848A6C4007C3811 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		FC8B49FC1848A6C4007C3811 /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC8B49ED1848A46C007C3811 /* CoreData.framework in Frameworks */,
 				FC84CC37183F85D500ACCE26 /* CoreGraphics.framework in Frameworks */,
 				FC84CC39183F85D500ACCE26 /* UIKit.framework in Frameworks */,
 				FC84CC35183F85D500ACCE26 /* Foundation.framework in Frameworks */,
@@ -98,6 +100,7 @@
 		FC84CC28183F85D500ACCE26 = {
 			isa = PBXGroup;
 			children = (
+				FC8B49F11848A4CA007C3811 /* DataModels */,
 				FC84CC3A183F85D500ACCE26 /* TvShow */,
 				FC84CC59183F85D500ACCE26 /* TvShowTests */,
 				FC84CC33183F85D500ACCE26 /* Frameworks */,
@@ -117,6 +120,7 @@
 		FC84CC33183F85D500ACCE26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FC8B49EC1848A46C007C3811 /* CoreData.framework */,
 				FC84CC34183F85D500ACCE26 /* Foundation.framework */,
 				FC84CC36183F85D500ACCE26 /* CoreGraphics.framework */,
 				FC84CC38183F85D500ACCE26 /* UIKit.framework */,
@@ -128,19 +132,15 @@
 		FC84CC3A183F85D500ACCE26 /* TvShow */ = {
 			isa = PBXGroup;
 			children = (
-				FC84CC43183F85D500ACCE26 /* tvshowAppDelegate.h */,
-				FC84CC44183F85D500ACCE26 /* tvshowAppDelegate.m */,
-				FC84CC46183F85D500ACCE26 /* Main.storyboard */,
-				FC84CC49183F85D500ACCE26 /* tvshowViewController.h */,
-				FC84CC4A183F85D500ACCE26 /* tvshowViewController.m */,
-				FC84CC4C183F85D500ACCE26 /* Images.xcassets */,
-				FC84CC3B183F85D500ACCE26 /* Supporting Files */,
-				FC84CC69183F9E9A00ACCE26 /* tvseries.h */,
-				FC84CC6A183F9E9A00ACCE26 /* tvseries.m */,
 				FC84CC72183FDA3E00ACCE26 /* detailedShowViewController.h */,
 				FC84CC73183FDA3E00ACCE26 /* detailedShowViewController.m */,
 				FC84CC75183FE2A600ACCE26 /* searchViewController.h */,
 				FC84CC76183FE2A600ACCE26 /* searchViewController.m */,
+				FC84CC43183F85D500ACCE26 /* tvshowAppDelegate.h */,
+				FC84CC44183F85D500ACCE26 /* tvshowAppDelegate.m */,
+				FC84CC46183F85D500ACCE26 /* Main.storyboard */,
+				FC84CC4C183F85D500ACCE26 /* Images.xcassets */,
+				FC84CC3B183F85D500ACCE26 /* Supporting Files */,
 				FC8B49E018443D20007C3811 /* Web Services */,
 			);
 			path = TvShow;
@@ -178,13 +178,23 @@
 		FC8B49E018443D20007C3811 /* Web Services */ = {
 			isa = PBXGroup;
 			children = (
-				FC8B49E5184472EB007C3811 /* WebService.h */,
-				FC8B49E6184472EB007C3811 /* WebService.m */,
 				FC8B49E81845A6A5007C3811 /* GetSeriesDelegate.h */,
 				FC8B49E91845A6B9007C3811 /* GetSeries.h */,
 				FC8B49EA1845A6B9007C3811 /* GetSeries.m */,
 			);
 			name = "Web Services";
+			sourceTree = "<group>";
+		};
+		FC8B49F11848A4CA007C3811 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				FC84CC69183F9E9A00ACCE26 /* tvseries.h */,
+				FC84CC6A183F9E9A00ACCE26 /* tvseries.m */,
+				FC8B49FB1848A6C4007C3811 /* Entity.h */,
+				FC8B49FC1848A6C4007C3811 /* Entity.m */,
+				FC8B49EE1848A49F007C3811 /* FavouritesModel.xcdatamodeld */,
+			);
+			name = DataModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,9 +295,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC84CC4B183F85D500ACCE26 /* tvshowViewController.m in Sources */,
+				FC8B49FD1848A6C4007C3811 /* Entity.m in Sources */,
+				FC8B49F01848A49F007C3811 /* FavouritesModel.xcdatamodeld in Sources */,
 				FC8B49EB1845A6B9007C3811 /* GetSeries.m in Sources */,
-				FC8B49E7184472EB007C3811 /* WebService.m in Sources */,
 				FC84CC74183FDA3E00ACCE26 /* detailedShowViewController.m in Sources */,
 				FC84CC41183F85D500ACCE26 /* main.m in Sources */,
 				FC84CC6B183F9E9A00ACCE26 /* tvseries.m in Sources */,
@@ -515,6 +525,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FC8B49EE1848A49F007C3811 /* FavouritesModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FC8B49EF1848A49F007C3811 /* FavouritesModel.xcdatamodel */,
+			);
+			currentVersion = FC8B49EF1848A49F007C3811 /* FavouritesModel.xcdatamodel */;
+			path = FavouritesModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FC84CC29183F85D500ACCE26 /* Project object */;
 }

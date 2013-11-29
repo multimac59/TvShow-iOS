@@ -26,7 +26,7 @@
 		FC8B49EB1845A6B9007C3811 /* GetSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49EA1845A6B9007C3811 /* GetSeries.m */; };
 		FC8B49ED1848A46C007C3811 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8B49EC1848A46C007C3811 /* CoreData.framework */; };
 		FC8B49F01848A49F007C3811 /* FavouritesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49EE1848A49F007C3811 /* FavouritesModel.xcdatamodeld */; };
-		FC8B49FD1848A6C4007C3811 /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49FC1848A6C4007C3811 /* Entity.m */; };
+		FC8B49FD1848A6C4007C3811 /* SeriesEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49FC1848A6C4007C3811 /* SeriesEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +49,7 @@
 		FC84CC40183F85D500ACCE26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FC84CC42183F85D500ACCE26 /* TvShow-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TvShow-Prefix.pch"; sourceTree = "<group>"; };
 		FC84CC43183F85D500ACCE26 /* tvshowAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tvshowAppDelegate.h; sourceTree = "<group>"; };
-		FC84CC44183F85D500ACCE26 /* tvshowAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tvshowAppDelegate.m; sourceTree = "<group>"; };
+		FC84CC44183F85D500ACCE26 /* tvshowAppDelegate.m */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.c.objc; path = tvshowAppDelegate.m; sourceTree = "<group>"; };
 		FC84CC47183F85D500ACCE26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC84CC4C183F85D500ACCE26 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FC84CC52183F85D500ACCE26 /* TvShowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TvShowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,8 +68,8 @@
 		FC8B49EA1845A6B9007C3811 /* GetSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetSeries.m; sourceTree = "<group>"; };
 		FC8B49EC1848A46C007C3811 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		FC8B49EF1848A49F007C3811 /* FavouritesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavouritesModel.xcdatamodel; sourceTree = "<group>"; };
-		FC8B49FB1848A6C4007C3811 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
-		FC8B49FC1848A6C4007C3811 /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
+		FC8B49FB1848A6C4007C3811 /* SeriesEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriesEntity.h; sourceTree = "<group>"; };
+		FC8B49FC1848A6C4007C3811 /* SeriesEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriesEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,8 +190,8 @@
 			children = (
 				FC84CC69183F9E9A00ACCE26 /* tvseries.h */,
 				FC84CC6A183F9E9A00ACCE26 /* tvseries.m */,
-				FC8B49FB1848A6C4007C3811 /* Entity.h */,
-				FC8B49FC1848A6C4007C3811 /* Entity.m */,
+				FC8B49FB1848A6C4007C3811 /* SeriesEntity.h */,
+				FC8B49FC1848A6C4007C3811 /* SeriesEntity.m */,
 				FC8B49EE1848A49F007C3811 /* FavouritesModel.xcdatamodeld */,
 			);
 			name = DataModels;
@@ -295,7 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC8B49FD1848A6C4007C3811 /* Entity.m in Sources */,
+				FC8B49FD1848A6C4007C3811 /* SeriesEntity.m in Sources */,
 				FC8B49F01848A49F007C3811 /* FavouritesModel.xcdatamodeld in Sources */,
 				FC8B49EB1845A6B9007C3811 /* GetSeries.m in Sources */,
 				FC84CC74183FDA3E00ACCE26 /* detailedShowViewController.m in Sources */,

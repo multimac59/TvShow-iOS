@@ -49,6 +49,9 @@
     // The interface builder only allows you to add one button, so this has to be done in code.
     // Creating buttons:
     UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+    
+    // Check if series exists before creating button
+    /////////////////////////////////////////////////////////////////////////////////////
     UIBarButtonItem *btnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBtnClick)];
     // Adding buttons to the navigation bar:
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnAdd, btnShare, nil]];
@@ -119,9 +122,8 @@
 - (void) addBtnClick
 {
     // Add the current series object to the data store.
-    
     [(tvshowAppDelegate *)[[UIApplication sharedApplication] delegate]
-     seriesDoesExist:series.seriesId];
+     addObjectToStore:series];
     
     
     

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3400" systemVersion="13A598" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Series" representedClassName="Entity" syncable="YES">
+    <entity name="SeriesEntity" representedClassName="Entity" syncable="YES">
         <attribute name="series" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="seriesID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Series" positionX="-2142" positionY="126" width="128" height="58"/>
+        <element name="SeriesEntity" positionX="-2142" positionY="126" width="128" height="73"/>
     </elements>
 </model>

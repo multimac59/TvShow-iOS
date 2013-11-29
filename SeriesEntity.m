@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 com.shazib. All rights reserved.
 //
 
-#import "Entity.h"
+#import "SeriesEntity.h"
 
 
-@implementation Entity
+@implementation SeriesEntity
 
 @dynamic series;
-
+@dynamic seriesID;
 @end

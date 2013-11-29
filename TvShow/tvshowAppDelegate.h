@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "tvseries.h"
+#import "SeriesEntity.h"
 @interface tvshowAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -20,5 +22,5 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 -(BOOL) seriesDoesExist:(NSString *)seriesID;
-
+-(BOOL) addObjectToStore:(tvseries *)series;
 @end

@@ -52,12 +52,28 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-///////////
+// Manual methods for core data implementation
 
--(BOOL)seriesDoesExist:(NSString *)seriesID {
-    
+-(BOOL)seriesDoesExist:(NSString *)seriesID
+{
     return true;
 }
+-(BOOL) addObjectToStore:(tvseries *)series
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSManagedObject *seriesEntity = [NSEntityDescription
+                                        insertNewObjectForEntityForName:@"SeriesEntity"
+                                        inManagedObjectContext:context];
+     //seriesEntity.seriesID = series;
+     
+     seriesEntity.series = series
+     
+     return true;
+}
+
+
+
+
 
 - (void)saveContext
 {

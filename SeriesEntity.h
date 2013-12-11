@@ -11,9 +11,10 @@
 #import "TvShow/tvseries.h"
 
 
+
 @interface SeriesEntity : NSManagedObject
 
-@property (nonatomic, retain) tvseries * series;
-@property (nonatomic, retain) NSString * seriesID;
+@property (nonatomic) tvseries * series;
+@property (nonatomic) NSString * seriesID;
 
 @end

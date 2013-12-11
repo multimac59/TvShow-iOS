@@ -7,7 +7,7 @@
         <!--View Controller-->
         <scene sceneID="0ZA-ou-n1h">
             <objects>
-                <viewController id="LCU-3e-kjw" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" id="LCU-3e-kjw" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N3Y-jE-lYB"/>
                         <viewControllerLayoutGuide type="bottom" id="0Le-lR-fS5"/>
@@ -99,7 +99,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ksQ-sG-xw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1607" y="-555"/>
+            <point key="canvasLocation" x="1703" y="-601"/>
         </scene>
         <!--Detailed Show View Controller-->
         <scene sceneID="pgo-Sw-udu">

@@ -7,21 +7,43 @@
 //
 
 #import "tvshowAppDelegate.h"
-
+#import "detailedShowViewController.h"
+#import "searchViewController.h"
+#import "PKRevealController.h"
 @implementation tvshowAppDelegate
 
 // Synthesising Core Data properties
 // When creating the app, i did not select 'Use Core Data'/
 // All Core Data was manually implemented midway through project.
+
+
 @synthesize managedObjectContext=__managedObjectContext;
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 
+@synthesize navigationController = _navigationController;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-
     // Override point for customization after application launch.
+     
+    //Attempting to implement a slide menu via PKRevealController Library
+     
+     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+     UIViewController *myview = (UIViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"mainViewController"];
+     searchViewController *searchController = (searchViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"searchController"];
+     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+     detailedShowViewController *detailedView = [[detailedShowViewController alloc] init];
+     self.navigationController = [[UINavigationController alloc] initWithRootViewController:myview];
+     
+     PKRevealController *revealController = [PKRevealController revealControllerWithFrontViewController:searchController leftViewController:myview];
+    
+     //revealController.delegate = self;
+     
+     
+     self.window.rootViewController = revealController;
+     [self.window makeKeyAndVisible];
+     
     return YES;
 }
 							
@@ -50,10 +72,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+     
+     [self saveContext];
 }
 
 // Manual methods for core data implementation
 
+/*
 -(BOOL)seriesDoesExist:(NSString *)seriesID
 {
     return true;
@@ -64,15 +89,32 @@
     NSManagedObject *seriesEntity = [NSEntityDescription
                                         insertNewObjectForEntityForName:@"SeriesEntity"
                                         inManagedObjectContext:context];
-     //seriesEntity.seriesID = series;
      
-     seriesEntity.series = series
+     //[seriesEntity setValue:series forKey:@"series"];
+     [seriesEntity setValue:series.seriesId forKey:@"seriesID"];
+     //seriesEntity[seriesID] = series.seriesId;
      
-     return true;
+     NSError * error;
+     if ([context save:&error]){
+          NSLog(@"Could not save, error: %@", [error localizedDescription]);
+          return false;
+     }
+     else {
+     
+          NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+          NSEntityDescription *entity = [NSEntityDescription entityForName:@"SeriesEntity" inManagedObjectContext:context];
+          [fetchRequest setEntity:entity];
+          NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+          for (NSManagedObject *info in fetchedObjects) {
+               
+               NSLog(@"SeriesID: %@", [info valueForKey:@"seriesID"]);
+          }
+          return true;
+     }
 }
 
 
-
+*/
 
 
 - (void)saveContext

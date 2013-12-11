@@ -25,7 +25,7 @@
 
 @property IBOutlet UIButton *imdb;
 
-
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 - (void)LaunchURL;
 - (void)addBtnClick;

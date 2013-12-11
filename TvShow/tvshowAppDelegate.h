@@ -9,18 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "tvseries.h"
 #import "SeriesEntity.h"
+
 @interface tvshowAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 
 // Core Data Properties and Methods
-@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+//Attempting PKReveal
+@property UINavigationController *navigationController;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
--(BOOL) seriesDoesExist:(NSString *)seriesID;
--(BOOL) addObjectToStore:(tvseries *)series;
+//- (BOOL) seriesDoesExist:(NSString *)seriesID;
+//- (BOOL) addObjectToStore:(tvseries *)series;
 @end

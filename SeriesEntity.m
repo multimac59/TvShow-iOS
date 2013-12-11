@@ -8,9 +8,20 @@
 
 #import "SeriesEntity.h"
 
+#import "tvseriesToDataTransformer.h"
 
 @implementation SeriesEntity
 
 @dynamic series;
 @dynamic seriesID;
+
+
+
++ (void)initialize {
+    if (self == [SeriesEntity class]){
+        tvseriesToDataTransformer *tranformer = [[tvseriesToDataTransformer alloc] init];
+        [NSValueTransformer setValueTransformer:tranformer forName:@"tvseriesToDataTransformer"];
+    }
+}
+
 @end

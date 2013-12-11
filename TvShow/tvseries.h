@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface tvseries : NSObject
+@interface tvseries : NSObject <NSCoding> 
 
 @property (nonatomic, copy) NSString *name;
 

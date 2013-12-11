@@ -8,6 +8,8 @@
 
 #import "detailedShowViewController.h"
 #import "tvshowAppDelegate.h"
+#import "SeriesEntity.h"
+#import "tvseries.h"
 
 @interface detailedShowViewController ()
 
@@ -107,6 +109,11 @@
         
     }
     
+    tvshowAppDelegate *appDelegate = (tvshowAppDelegate *)[[UIApplication sharedApplication]delegate];
+    self.managedObjectContext = [appDelegate managedObjectContext];
+    
+    
+   
     
 }
 
@@ -119,14 +126,70 @@
     
 }
 
+// This method adds the selected Tvseries to the entity 'SeriesEntity' which stores all favourited shows.
+
 - (void) addBtnClick
 {
-    // Add the current series object to the data store.
-    [(tvshowAppDelegate *)[[UIApplication sharedApplication] delegate]
-     addObjectToStore:series];
+   
+    // First we Check that the value does not already exist
     
+    // Create a fetch request, think of this like a SQL SELECT statement.
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"SeriesEntity" inManagedObjectContext:self.managedObjectContext];
+    //Set the table to perform the request on
+	[request setEntity:entity];
+    // Set descriptor for ordering the fetched results
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"seriesID" ascending:NO];
+    // Execute the request
+	[request setSortDescriptors:@[sortDescriptor]];
     
+    // Create an array with the the returned values.
+    NSError *error = nil;
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	if (mutableFetchResults == nil) {
+		// If there is an error, show an alert.
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"There was an error setting this favourite" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        // Show the alert and return the method
+        [alert show];
+        return;
+	}
+    // If the data is successfully retrieved, check that the series has not already been added.
+    // For each 'record' of type SeriesEntity [the table] in the array
+    for (SeriesEntity * bob in mutableFetchResults){
+        // If the seriesid of the current show is equal to the value in the array
+        if ([bob.seriesID isEqualToString:self.series.seriesId]) {
+            // Show an alert and return, do not add the value.
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"You have already favourited this show" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            return;
+        }
+    }
     
+    // If the method has not returned at this stage,
+    // Then the show may be saved.
+    
+    // Create a instance of the entity type
+    SeriesEntity *event = (SeriesEntity *)[NSEntityDescription insertNewObjectForEntityForName:@"SeriesEntity" inManagedObjectContext:self.managedObjectContext];
+    // Set the values using the current object
+    [event setSeries:series];
+    [event setSeriesID:self.series.seriesId];
+	
+    // Save to the managedObjectContext
+	if (![self.managedObjectContext save:&error]) {
+        
+        // Error handling
+        // Return an alert, log the error
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"There was an error setting this favourite" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        // Show the alert and return the method
+        [alert show];
+	}
+    else {
+        //Return a success message
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Yay!" message:@"The Show Was Favourited" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        // Show the alert and return the method
+        [alert show];    }
+    return;
     
 }
 

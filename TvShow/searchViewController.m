@@ -79,8 +79,8 @@
 // When a cell is clicked
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSLog(@"%@", indexPath);
-
     self.atIndex = indexPath.row;
 }
 
@@ -163,6 +163,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
   //  ((detailedShowViewController*)segue.destinationViewController).index = [self.tableView indexPathForCell:(UITableViewCell*)sender].row;
+    
     ((detailedShowViewController*)segue.destinationViewController).series = searchResults[[self.tableView indexPathForCell:(UITableViewCell*)sender].row];
 }
 

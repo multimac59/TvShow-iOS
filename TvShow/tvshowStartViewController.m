@@ -39,10 +39,6 @@
 
 
 - (IBAction)whenClicked:(UIButton *)sender {
-    NSLog(@"TESTING IBACTION");
-
-
-    
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     

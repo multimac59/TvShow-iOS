@@ -92,11 +92,11 @@
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     
     if( [elementName isEqualToString:@"Data"]){
-        NSLog(@"Did Start Data");
+       // NSLog(@"Did Start Data");
        episodes = [[NSMutableArray alloc] init];
     }
     if( [elementName isEqualToString:@"Episode"]){
-        NSLog(@"Did Start Episode");
+       // NSLog(@"Did Start Episode");
         self.currentEpisode = [[episode alloc] init];
     }
     

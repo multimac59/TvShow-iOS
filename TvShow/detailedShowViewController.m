@@ -11,6 +11,7 @@
 #import "SeriesEntity.h"
 #import "tvseries.h"
 #import "GetEpisodes.h"
+#import "episodeViewController.h"
 
 @interface detailedShowViewController ()
 
@@ -369,6 +370,19 @@
 
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    NSLog(@"preparing for segue");
+    NSLog(@"season number is: %d", [table indexPathForCell:(UITableViewCell*)sender].row+1);
+    NSString *temp = [NSString stringWithFormat:@"season%d",[table indexPathForCell:(UITableViewCell*)sender].row+1];
+                      
+    NSMutableArray *seasonToSend = [[NSMutableArray alloc]init];
+  //  [seasonToSend init];
+    seasonToSend = [self.seasonsDict valueForKey:temp];
+    
+    ((episodeViewController*)segue.destinationViewController).episodes = seasonToSend;
+   //((episodeViewController *)segue.destinationViewController).cellTitle = [NSString stringWithFormat:@"randomness"];
+}
 
 - (void) serviceFinished:(id)service withError:(BOOL)error  {
     
@@ -411,15 +425,28 @@
         }
         // Now to separate the episodes into seasons
         // For each episode in the array of episodes, add to a specific array in the dictionary
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        
+        //int counter = numberOfSeasons;
+        
         for (int i = 0; i < [self.episodes count]; i++) {
             
             episode *temp = self.episodes[i];
+            int seasonNum = temp.seasonNumber;
             //NSLog(@"overview for ep:%@", temp.overview);
-            NSString *temporary = [NSString stringWithFormat:@"season%d",i+1];
+            NSString *temporary = [NSString stringWithFormat:@"season%d",seasonNum];
             //NSLog(@"adding object temp to dict");
-            NSMutableArray *tempArray = [[NSMutableArray alloc] init];
             [tempArray addObject:temp];
             [self.seasonsDict setObject:tempArray forKey:temporary];
+            
+            if ((i+1) < [self.episodes count]) {
+                
+                episode *checker = self.episodes[i+1];
+                if (checker.seasonNumber !=seasonNum){
+                    [tempArray removeAllObjects];
+                }
+            }
+            
         }
         
         // Checking that the pass was successful
@@ -435,9 +462,6 @@
 }
 
 
-- (void)viewDidDisappear:(BOOL)animated {
-    self.banner = nil;
-}
 
 - (void)didReceiveMemoryWarning
 {

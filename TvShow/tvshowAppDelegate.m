@@ -30,13 +30,18 @@
     //Attempting to implement a slide menu via PKRevealController Library
      
      UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-     UIViewController *myview = (UIViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"mainViewController"];
-     searchViewController *searchController = (searchViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"searchController"];
-     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-     detailedShowViewController *detailedView = [[detailedShowViewController alloc] init];
-     self.navigationController = [[UINavigationController alloc] initWithRootViewController:myview];
      
-     PKRevealController *revealController = [PKRevealController revealControllerWithFrontViewController:searchController leftViewController:myview];
+     
+     searchViewController *searchController = (searchViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"searchController"];
+     UINavigationController *initialNav = (UINavigationController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"initalNav"];
+     
+     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+     
+   //  self.navigationController = [[UINavigationController alloc] initWithRootViewController:myview];
+     UIViewController *startController = (UIViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"startController"];
+     
+     
+     PKRevealController *revealController = [PKRevealController revealControllerWithFrontViewController:initialNav leftViewController:startController];
     
      //revealController.delegate = self;
      

@@ -39,25 +39,107 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    // NSLog(@"%@",series.overview);
+    // Importing the data model
+    tvshowAppDelegate *appDelegate = (tvshowAppDelegate *)[[UIApplication sharedApplication]delegate];
+    self.managedObjectContext = [appDelegate managedObjectContext];
     
-    // Setting the Labels using the carried over tvseries object.
-    overview.text = series.overview;
-    airDate.text = [NSString stringWithFormat:@"Air Date: %@",series.firstAired];
-    network.text = [NSString stringWithFormat:@"Network: %@",series.network];
+    // Setting title
     navBar.title = series.name;
+    //Setting Default Values
+        // If there is no overview
+        if ([series.overview length] < 5) {
+            // Set a default value
+            overview.text = @"No Overview Found";
+        }
+        else // Otherwise
+        {
+            overview.text = series.overview;
+            
+        }
+        // If there is no network value
+        if ([series.network length] < 2) {
+            // Set a default string
+            network.text = @"No Network Found";
+        }
+        else // Otherwise set the value
+        {
+            network.text = [NSString stringWithFormat:@"Network: %@",series.network];
+        }
+        if ([series.firstAired length] < 9) {
+            airDate.text = @"No Air Date Found";
+        }
+        else
+        {
+            airDate.text = [NSString stringWithFormat:@"Air Date: %@",series.firstAired];
+        }
     
-    // Create an array of buttons for the navbar, the share and add buttons.
-    // The interface builder only allows you to add one button, so this has to be done in code.
-    // Creating buttons:
-    UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+
+    // First we Check that the series does not already exist
+    // Create a fetch request, think of this like a SQL SELECT statement.
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"SeriesEntity" inManagedObjectContext:self.managedObjectContext];
+    //Set the table to perform the request on
+	[request setEntity:entity];
+    // Set descriptor for ordering the fetched results
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"seriesID" ascending:NO];
+    // Execute the request
+	[request setSortDescriptors:@[sortDescriptor]];
     
-    // Check if series exists before creating button
-    /////////////////////////////////////////////////////////////////////////////////////
-    UIBarButtonItem *btnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBtnClick)];
-    // Adding buttons to the navigation bar:
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnAdd, btnShare, nil]];
-     
+    // Create an array with the the returned values.
+    NSError *error = nil;
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	if (mutableFetchResults == nil) {
+		// If there is an error.
+        // Allow the button to be shown, the check is also handled again.
+        // Adding buttons to the navigation bar:
+        // Create an array of buttons for the navbar, the share and add buttons.
+        // The interface builder only allows you to add one button, so this has to be done in code.
+        // Creating buttons:
+        NSLog(@"results are nil, add both");
+        UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+        UIBarButtonItem *btnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBtnClick)];
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnAdd, btnShare, nil]];
+        
+        
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"There was an error setting this favourite" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        // Show the alert and return the method
+        [alert show];
+        return;
+	}
+    
+    BOOL found = FALSE;
+    if (mutableFetchResults != nil){
+        // If the data is successfully retrieved, check that the series has not already been added.
+        // For each 'record' of type SeriesEntity [the table] in the array
+       
+        for (SeriesEntity * bob in mutableFetchResults){
+            // If the seriesid of the current show is equal to the value in the array
+            if ([bob.seriesID isEqualToString:self.series.seriesId]) {
+                // If the show has been added, show only the share button
+                // Adding buttons to the navigation bar:
+                // Create an array of buttons for the navbar, the share and add buttons.
+                // The interface builder only allows you to add one button, so this has to be done in code.
+                // Creating buttons:
+                NSLog(@"found already, add only share");
+               found = TRUE;
+                UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+                [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnShare, nil]];
+            }
+            
+        }
+        
+        // Otherwise, add both buttons.
+        // Adding buttons to the navigation bar:
+        // Create an array of buttons for the navbar, the share and add buttons.
+        // The interface builder only allows you to add one button, so this has to be done in code.
+        // Creating buttons:
+        if (!found) {
+            NSLog(@"none found, add both");
+            UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+            UIBarButtonItem *btnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBtnClick)];
+            [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnAdd, btnShare, nil]];
+        }
+    }
     
     // Simple check to see if there is a valid IMDB ID found in the object
     if ([series.imdb length] > 3) {
@@ -78,6 +160,8 @@
         [self.view addSubview:label];
     }
 
+    
+    // Setting a banner image
     if ([series.banner length] > 9) {
         NSLog(@"banner exists");
         dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -108,12 +192,11 @@
         });
         
     }
-    
-    tvshowAppDelegate *appDelegate = (tvshowAppDelegate *)[[UIApplication sharedApplication]delegate];
-    self.managedObjectContext = [appDelegate managedObjectContext];
-    
-    
-   
+    else // If no banner url is found
+    {
+        // Set default image.
+    }
+
     
 }
 
@@ -148,7 +231,7 @@
 	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	if (mutableFetchResults == nil) {
 		// If there is an error, show an alert.
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"There was an error setting this favourite" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"There was an error checking if this favourite exists" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         // Show the alert and return the method
         [alert show];
         return;
@@ -188,13 +271,34 @@
         //Return a success message
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Yay!" message:@"The Show Was Favourited" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         // Show the alert and return the method
-        [alert show];    }
+        [alert show];
+        //reload display to no longer show the add button
+        
+        [self viewDidLoad];
+    
+    }
     return;
     
 }
 
+- (void) share {
+    
+    NSString *urlBase = @"http://thetvdb.com/?tab=series&id=%@";
+    NSString *urlFull = [urlBase stringByAppendingString:self.series.seriesId];
+    NSLog(@"THIS IS TEMPSTRING: %@", urlFull);
+    [self shareText:urlFull];
+}
 
-
+- (void)shareText:(NSString *)string {
+    NSMutableArray *sharingItems = [NSMutableArray new];
+    
+    if (string) {
+        [sharingItems addObject:string];
+    }
+    
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

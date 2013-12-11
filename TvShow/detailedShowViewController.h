@@ -29,4 +29,6 @@
 
 - (void)LaunchURL;
 - (void)addBtnClick;
+- (void)shareText:(NSString *)string;
+- (void)share;
 @end

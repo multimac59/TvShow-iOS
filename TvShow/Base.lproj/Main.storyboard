@@ -4,6 +4,37 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
+        <!--Tvshow Start View Controller-->
+        <scene sceneID="2KK-eN-s9o">
+            <objects>
+                <viewController storyboardIdentifier="startController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fad-T9-bzW" customClass="tvshowStartViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="417-GR-irK"/>
+                        <viewControllerLayoutGuide type="bottom" id="c46-7G-hai"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xvl-91-7A8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9am-jV-kXQ">
+                                <rect key="frame" x="68" y="133" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="whenClicked:" destination="fad-T9-bzW" eventType="touchUpInside" id="jfS-fd-LXz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lWi-Rv-u6e"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="diM-MI-EIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-113" y="-916"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="0ZA-ou-n1h">
             <objects>
@@ -17,13 +48,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekJ-lI-ygC">
-                                <rect key="frame" x="36" y="123" width="99" height="30"/>
+                                <rect key="frame" x="35" y="123" width="99" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Search Shows">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="aCa-OJ-h59" kind="push" id="Us8-6o-cD7"/>
+                                    <segue destination="aCa-OJ-h59" kind="push" id="Qx6-KO-dqD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZs-PC-I0c">
@@ -43,7 +74,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXc-8n-5QV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1149" y="-234"/>
+            <point key="canvasLocation" x="349" y="-172"/>
         </scene>
         <!--Search View Controller - Search For Shows-->
         <scene sceneID="qH3-4U-jKl">
@@ -99,7 +130,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ksQ-sG-xw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1703" y="-601"/>
+            <point key="canvasLocation" x="895" y="-729"/>
         </scene>
         <!--Detailed Show View Controller-->
         <scene sceneID="pgo-Sw-udu">
@@ -175,29 +206,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UvU-dc-pPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2092" y="-555"/>
+            <point key="canvasLocation" x="1450" y="-305"/>
         </scene>
-        <!--Table View Controller - Your Favourites-->
+        <!--Favourites View Controller - Your Favourites-->
         <scene sceneID="yFI-Ir-V0y">
             <objects>
-                <tableViewController id="OQG-bk-0bc" sceneMemberID="viewController">
+                <tableViewController id="OQG-bk-0bc" customClass="favouritesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="wci-wp-RiQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="ukA-HR-tAx">
-                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PQn-Lk-Q9W">
-                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favouriteCell" textLabel="KVQ-2A-KNE" detailTextLabel="3bj-Km-RIg" style="IBUITableViewCellStyleSubtitle" id="PQn-Lk-Q9W">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PQn-Lk-Q9W" id="MRR-hz-dZu">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KVQ-2A-KNE">
+                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3bj-Km-RIg">
+                                            <rect key="frame" x="15" y="25" width="43" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="PLv-Zu-V46" kind="push" id="waW-uH-gQK"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -209,12 +254,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r50-pL-qOE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1633" y="138"/>
+            <point key="canvasLocation" x="895" y="-28"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ivZ-rG-Asp">
             <objects>
-                <navigationController definesPresentationContext="YES" id="u6i-qW-263" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="initalNav" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="u6i-qW-263" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r4i-fu-bUb">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -224,7 +269,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vc8-DY-S7I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="677" y="-234"/>
+            <point key="canvasLocation" x="-113" y="-178"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -232,4 +277,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="PQP-fG-Jl6"/>
+    </inferredMetricsTieBreakers>
 </document>

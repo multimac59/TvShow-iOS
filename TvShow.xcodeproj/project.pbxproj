@@ -29,6 +29,8 @@
 		FC8B49FD1848A6C4007C3811 /* SeriesEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49FC1848A6C4007C3811 /* SeriesEntity.m */; };
 		FC8B4A441849272F007C3811 /* tvseriesToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A431849272F007C3811 /* tvseriesToDataTransformer.m */; };
 		FC8B4A4E1857FAE4007C3811 /* libPKRevealController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8B4A4D1857FAC4007C3811 /* libPKRevealController.a */; };
+		FC8B4A53185806D3007C3811 /* tvshowStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A52185806D3007C3811 /* tvshowStartViewController.m */; };
+		FC8B4A5618581632007C3811 /* favouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A5518581632007C3811 /* favouritesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,10 @@
 		FC8B4A481857FAC4007C3811 /* PKRevealController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PKRevealController.xcodeproj; path = ../../PKRevealController/Source/PKRevealController.xcodeproj; sourceTree = "<group>"; };
 		FC8B4A4F1857FB3E007C3811 /* PKRevealController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PKRevealController.h; path = ../../PKRevealController/Headers/PKRevealController.h; sourceTree = "<group>"; };
 		FC8B4A501857FB3E007C3811 /* UIViewController+PKRevealController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIViewController+PKRevealController.h"; path = "../../PKRevealController/Headers/UIViewController+PKRevealController.h"; sourceTree = "<group>"; };
+		FC8B4A51185806D3007C3811 /* tvshowStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tvshowStartViewController.h; sourceTree = "<group>"; };
+		FC8B4A52185806D3007C3811 /* tvshowStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tvshowStartViewController.m; sourceTree = "<group>"; };
+		FC8B4A5418581632007C3811 /* favouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = favouritesViewController.h; sourceTree = "<group>"; };
+		FC8B4A5518581632007C3811 /* favouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = favouritesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +153,12 @@
 		FC84CC3A183F85D500ACCE26 /* TvShow */ = {
 			isa = PBXGroup;
 			children = (
+				FC8B4A51185806D3007C3811 /* tvshowStartViewController.h */,
+				FC8B4A52185806D3007C3811 /* tvshowStartViewController.m */,
 				FC84CC72183FDA3E00ACCE26 /* detailedShowViewController.h */,
 				FC84CC73183FDA3E00ACCE26 /* detailedShowViewController.m */,
+				FC8B4A5418581632007C3811 /* favouritesViewController.h */,
+				FC8B4A5518581632007C3811 /* favouritesViewController.m */,
 				FC84CC75183FE2A600ACCE26 /* searchViewController.h */,
 				FC84CC76183FE2A600ACCE26 /* searchViewController.m */,
 				FC84CC43183F85D500ACCE26 /* tvshowAppDelegate.h */,
@@ -345,8 +355,10 @@
 				FC84CC74183FDA3E00ACCE26 /* detailedShowViewController.m in Sources */,
 				FC84CC41183F85D500ACCE26 /* main.m in Sources */,
 				FC84CC6B183F9E9A00ACCE26 /* tvseries.m in Sources */,
+				FC8B4A5618581632007C3811 /* favouritesViewController.m in Sources */,
 				FC84CC77183FE2A600ACCE26 /* searchViewController.m in Sources */,
 				FC8B4A441849272F007C3811 /* tvseriesToDataTransformer.m in Sources */,
+				FC8B4A53185806D3007C3811 /* tvshowStartViewController.m in Sources */,
 				FC84CC45183F85D500ACCE26 /* tvshowAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

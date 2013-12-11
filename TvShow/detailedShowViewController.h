@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "tvseries.h"
-
-@interface detailedShowViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+#import "GetEpisodesDelegate.h"
+@interface detailedShowViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, GetEpisodesDelegate>
 
 @property IBOutlet UILabel *network;
 
@@ -25,8 +25,16 @@
 
 @property IBOutlet UIButton *imdb;
 
+@property IBOutlet UITableView *table;
+
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
+@property (nonatomic) NSMutableArray * episodes;
+
+
+@property NSMutableDictionary *seasonsDict;
+
+@property (nonatomic) int numberOfSeasons;
 - (void)LaunchURL;
 - (void)addBtnClick;
 - (void)shareText:(NSString *)string;

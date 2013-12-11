@@ -31,6 +31,8 @@
 		FC8B4A4E1857FAE4007C3811 /* libPKRevealController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8B4A4D1857FAC4007C3811 /* libPKRevealController.a */; };
 		FC8B4A53185806D3007C3811 /* tvshowStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A52185806D3007C3811 /* tvshowStartViewController.m */; };
 		FC8B4A5618581632007C3811 /* favouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A5518581632007C3811 /* favouritesViewController.m */; };
+		FC8B4A5B1858E9B7007C3811 /* GetEpisodes.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A5A1858E9B7007C3811 /* GetEpisodes.m */; };
+		FC8B4A5F1858E9E2007C3811 /* episode.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A5E1858E9E2007C3811 /* episode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,11 @@
 		FC8B4A52185806D3007C3811 /* tvshowStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tvshowStartViewController.m; sourceTree = "<group>"; };
 		FC8B4A5418581632007C3811 /* favouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = favouritesViewController.h; sourceTree = "<group>"; };
 		FC8B4A5518581632007C3811 /* favouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = favouritesViewController.m; sourceTree = "<group>"; };
+		FC8B4A591858E9B7007C3811 /* GetEpisodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetEpisodes.h; sourceTree = "<group>"; };
+		FC8B4A5A1858E9B7007C3811 /* GetEpisodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetEpisodes.m; sourceTree = "<group>"; };
+		FC8B4A5D1858E9E2007C3811 /* episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = episode.h; sourceTree = "<group>"; };
+		FC8B4A5E1858E9E2007C3811 /* episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = episode.m; sourceTree = "<group>"; };
+		FC8B4A601858EB29007C3811 /* GetEpisodesDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetEpisodesDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +216,9 @@
 				FC8B49E81845A6A5007C3811 /* GetSeriesDelegate.h */,
 				FC8B49E91845A6B9007C3811 /* GetSeries.h */,
 				FC8B49EA1845A6B9007C3811 /* GetSeries.m */,
+				FC8B4A591858E9B7007C3811 /* GetEpisodes.h */,
+				FC8B4A5A1858E9B7007C3811 /* GetEpisodes.m */,
+				FC8B4A601858EB29007C3811 /* GetEpisodesDelegate.h */,
 			);
 			name = "Web Services";
 			sourceTree = "<group>";
@@ -223,6 +233,8 @@
 				FC8B49EE1848A49F007C3811 /* FavouritesModel.xcdatamodeld */,
 				FC8B4A421849272F007C3811 /* tvseriesToDataTransformer.h */,
 				FC8B4A431849272F007C3811 /* tvseriesToDataTransformer.m */,
+				FC8B4A5D1858E9E2007C3811 /* episode.h */,
+				FC8B4A5E1858E9E2007C3811 /* episode.m */,
 			);
 			name = DataModels;
 			sourceTree = "<group>";
@@ -349,11 +361,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC8B4A5B1858E9B7007C3811 /* GetEpisodes.m in Sources */,
 				FC8B49FD1848A6C4007C3811 /* SeriesEntity.m in Sources */,
 				FC8B49F01848A49F007C3811 /* FavouritesModel.xcdatamodeld in Sources */,
 				FC8B49EB1845A6B9007C3811 /* GetSeries.m in Sources */,
 				FC84CC74183FDA3E00ACCE26 /* detailedShowViewController.m in Sources */,
 				FC84CC41183F85D500ACCE26 /* main.m in Sources */,
+				FC8B4A5F1858E9E2007C3811 /* episode.m in Sources */,
 				FC84CC6B183F9E9A00ACCE26 /* tvseries.m in Sources */,
 				FC8B4A5618581632007C3811 /* favouritesViewController.m in Sources */,
 				FC84CC77183FE2A600ACCE26 /* searchViewController.m in Sources */,

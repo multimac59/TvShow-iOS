@@ -10,6 +10,7 @@
 #import "tvshowAppDelegate.h"
 #import "SeriesEntity.h"
 #import "tvseries.h"
+#import "GetEpisodes.h"
 
 @interface detailedShowViewController ()
 
@@ -25,14 +26,32 @@
 @synthesize airDate;
 @synthesize network;
 @synthesize imdb;
+@synthesize episodes;
+@synthesize table;
+@synthesize numberOfSeasons;
+@synthesize seasonsDict;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
+
+        
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    GetEpisodes * service = [[GetEpisodes alloc] init];
+    service.seriesID = self.series.seriesId;
+    [service setDelegate:self];
+    [self.episodes removeAllObjects];
+    [service main];
+    [self.table reloadData];
+    
 }
 
 - (void)viewDidLoad
@@ -187,14 +206,32 @@
             
             //UIImage *temp = [[UIImage alloc] initWithData:image];
                 UIImage *temp = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
+                CATransition *animation = [CATransition animation];
+                //[animation setDelegate:self];
+                [animation setDuration:3.0];
+                [animation setType:kCATransitionFromTop];
+                [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+                 //[[self.banner layer] addAnimation:animation forKey:nil];
+                
+                [[banner layer ]performSelectorOnMainThread:@selector(addAnimation:forKey:) withObject:animation waitUntilDone:NO];
                 [banner performSelectorOnMainThread:@selector(setImage:) withObject:temp waitUntilDone:NO];
+                filePath = nil;
             }
         });
         
     }
     else // If no banner url is found
     {
-        // Set default image.
+        // Set default image
+        NSLog(@"No Default Picture");
+        UIImage *temp = [UIImage imageNamed:@"defaultBanner"];
+        CATransition *animation = [CATransition animation];
+        [animation setDuration:2.0];
+        [animation setType:kCATransitionFromTop];
+        [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+        [[banner layer ]performSelectorOnMainThread:@selector(addAnimation:forKey:) withObject:animation waitUntilDone:NO];
+        [banner performSelectorOnMainThread:@selector(setImage:) withObject:temp waitUntilDone:NO];
+        
     }
 
     
@@ -309,20 +346,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return numberOfSeasons;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"seriesCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"seasonCell"];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"seriesCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"seasonCell"];
     }
     
 
     
-    cell.textLabel.text = @"hello";
+    cell.textLabel.text = [NSString stringWithFormat:@"Season %d", (indexPath.row+1)];
     return cell;
 }
 
@@ -332,6 +369,75 @@
 
 }
 
+
+- (void) serviceFinished:(id)service withError:(BOOL)error  {
+    
+    NSLog(@"service finished with error is called");
+    
+    // If No Error
+    if (!error) {
+        // Now the episodes collected by GetEpisodes must be separated into seasons.
+        // First assign the episodes to a global array
+        self.episodes = [service episodes];
+        
+        // Now we must calculate how many seasons there are. this differs for different shows; sometimes the first episode is the first
+        // Sometimes the first episode is the last
+        // A simple if statment determines which has the highest season number.
+        
+        episode * tempEpLast = self.episodes[([self.episodes count] - 1)];
+        episode * tempEpFirst = self.episodes[0];
+        episode * final = [[episode alloc] init];
+        
+        if (tempEpFirst.seasonNumber > tempEpLast.seasonNumber) {
+            final = tempEpFirst;
+            
+        }else {
+            final = tempEpLast;
+        }
+        // The 'final' episode will have the last possible season number
+        
+        //number of total seasons
+        self.numberOfSeasons = final.seasonNumber;
+        self.seasonsDict = [[NSMutableDictionary alloc] initWithCapacity:numberOfSeasons];
+        
+        NSLog(@"number of seasons: %d", self.numberOfSeasons);
+        
+        for (int a = 1; a <= numberOfSeasons; a++) {
+            //NSLog(@"A BEFORE:%d",a);
+            // An array is added to a NSMutableDictionary for each season
+            NSString *temp = [NSString stringWithFormat:@"season%d",a];
+            [self.seasonsDict setObject:[[NSMutableArray alloc] init] forKey:temp];
+            //NSLog(@"adding array object to dictionary.");
+        }
+        // Now to separate the episodes into seasons
+        // For each episode in the array of episodes, add to a specific array in the dictionary
+        for (int i = 0; i < [self.episodes count]; i++) {
+            
+            episode *temp = self.episodes[i];
+            //NSLog(@"overview for ep:%@", temp.overview);
+            NSString *temporary = [NSString stringWithFormat:@"season%d",i+1];
+            //NSLog(@"adding object temp to dict");
+            NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+            [tempArray addObject:temp];
+            [self.seasonsDict setObject:tempArray forKey:temporary];
+        }
+        
+        // Checking that the pass was successful
+        //NSMutableArray *temp = [self.seasonsDict valueForKey:@"season1"];
+        //tempEpFirst = temp[0];
+        //NSLog(@"value for overview is passed:%@", tempEpFirst.overview);
+        
+        // Reload Tableview
+        
+        [table performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+        
+    }
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated {
+    self.banner = nil;
+}
 
 - (void)didReceiveMemoryWarning
 {

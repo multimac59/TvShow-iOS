@@ -10,10 +10,13 @@
 
 @interface favouritesViewController : UITableViewController
 
+// Various propertires for managing the table
+
 @property NSMutableArray * valuesForTable;
 
 @property (nonatomic) int atIndex;
 
+// Accessing the core data store
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 

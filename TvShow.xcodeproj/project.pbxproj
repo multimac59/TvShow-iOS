@@ -28,7 +28,6 @@
 		FC8B49F01848A49F007C3811 /* FavouritesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49EE1848A49F007C3811 /* FavouritesModel.xcdatamodeld */; };
 		FC8B49FD1848A6C4007C3811 /* SeriesEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B49FC1848A6C4007C3811 /* SeriesEntity.m */; };
 		FC8B4A441849272F007C3811 /* tvseriesToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A431849272F007C3811 /* tvseriesToDataTransformer.m */; };
-		FC8B4A4E1857FAE4007C3811 /* libPKRevealController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8B4A4D1857FAC4007C3811 /* libPKRevealController.a */; };
 		FC8B4A53185806D3007C3811 /* tvshowStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A52185806D3007C3811 /* tvshowStartViewController.m */; };
 		FC8B4A5618581632007C3811 /* favouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A5518581632007C3811 /* favouritesViewController.m */; };
 		FC8B4A5B1858E9B7007C3811 /* GetEpisodes.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A5A1858E9B7007C3811 /* GetEpisodes.m */; };
@@ -39,6 +38,7 @@
 		FCA2E80918598A9E0053C2A8 /* welcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2E80818598A9E0053C2A8 /* welcomeView.m */; };
 		FCA2E80C18598EB70053C2A8 /* liveFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2E80B18598EB70053C2A8 /* liveFeedViewController.m */; };
 		FCA2E81018598F260053C2A8 /* GetLiveFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2E80F18598F260053C2A8 /* GetLiveFeed.m */; };
+		FCA2E82118599C620053C2A8 /* libPKRevealController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCA2E81E18599B760053C2A8 /* libPKRevealController.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,9 +49,9 @@
 			remoteGlobalIDString = FC84CC30183F85D500ACCE26;
 			remoteInfo = TvShow;
 		};
-		FC8B4A4C1857FAC4007C3811 /* PBXContainerItemProxy */ = {
+		FCA2E81D18599B760053C2A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FC8B4A481857FAC4007C3811 /* PKRevealController.xcodeproj */;
+			containerPortal = FCA2E81918599B760053C2A8 /* PKRevealController.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = F9621E7B1815246000469E41;
 			remoteInfo = PKRevealController;
@@ -91,9 +91,6 @@
 		FC8B49FC1848A6C4007C3811 /* SeriesEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriesEntity.m; sourceTree = "<group>"; };
 		FC8B4A421849272F007C3811 /* tvseriesToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tvseriesToDataTransformer.h; sourceTree = "<group>"; };
 		FC8B4A431849272F007C3811 /* tvseriesToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tvseriesToDataTransformer.m; sourceTree = "<group>"; };
-		FC8B4A481857FAC4007C3811 /* PKRevealController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PKRevealController.xcodeproj; path = ../../PKRevealController/Source/PKRevealController.xcodeproj; sourceTree = "<group>"; };
-		FC8B4A4F1857FB3E007C3811 /* PKRevealController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PKRevealController.h; path = ../../PKRevealController/Headers/PKRevealController.h; sourceTree = "<group>"; };
-		FC8B4A501857FB3E007C3811 /* UIViewController+PKRevealController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIViewController+PKRevealController.h"; path = "../../PKRevealController/Headers/UIViewController+PKRevealController.h"; sourceTree = "<group>"; };
 		FC8B4A51185806D3007C3811 /* tvshowStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tvshowStartViewController.h; sourceTree = "<group>"; };
 		FC8B4A52185806D3007C3811 /* tvshowStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tvshowStartViewController.m; sourceTree = "<group>"; };
 		FC8B4A5418581632007C3811 /* favouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = favouritesViewController.h; sourceTree = "<group>"; };
@@ -116,6 +113,9 @@
 		FCA2E80D18598F030053C2A8 /* GetLiveFeedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetLiveFeedDelegate.h; sourceTree = "<group>"; };
 		FCA2E80E18598F260053C2A8 /* GetLiveFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetLiveFeed.h; sourceTree = "<group>"; };
 		FCA2E80F18598F260053C2A8 /* GetLiveFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetLiveFeed.m; sourceTree = "<group>"; };
+		FCA2E81918599B760053C2A8 /* PKRevealController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PKRevealController.xcodeproj; path = PKRevealController/Source/PKRevealController.xcodeproj; sourceTree = SOURCE_ROOT; };
+		FCA2E81F18599BAD0053C2A8 /* PKRevealController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PKRevealController.h; path = PKRevealController/Headers/PKRevealController.h; sourceTree = SOURCE_ROOT; };
+		FCA2E82018599BAD0053C2A8 /* UIViewController+PKRevealController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIViewController+PKRevealController.h"; path = "PKRevealController/Headers/UIViewController+PKRevealController.h"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC8B4A4E1857FAE4007C3811 /* libPKRevealController.a in Frameworks */,
+				FCA2E82118599C620053C2A8 /* libPKRevealController.a in Frameworks */,
 				FC8B49ED1848A46C007C3811 /* CoreData.framework in Frameworks */,
 				FC84CC37183F85D500ACCE26 /* CoreGraphics.framework in Frameworks */,
 				FC84CC39183F85D500ACCE26 /* UIKit.framework in Frameworks */,
@@ -210,9 +210,9 @@
 		FC84CC3B183F85D500ACCE26 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FC8B4A4F1857FB3E007C3811 /* PKRevealController.h */,
-				FC8B4A501857FB3E007C3811 /* UIViewController+PKRevealController.h */,
-				FC8B4A481857FAC4007C3811 /* PKRevealController.xcodeproj */,
+				FCA2E81F18599BAD0053C2A8 /* PKRevealController.h */,
+				FCA2E82018599BAD0053C2A8 /* UIViewController+PKRevealController.h */,
+				FCA2E81918599B760053C2A8 /* PKRevealController.xcodeproj */,
 				FC84CC3C183F85D500ACCE26 /* TvShow-Info.plist */,
 				FC84CC3D183F85D500ACCE26 /* InfoPlist.strings */,
 				FC84CC40183F85D500ACCE26 /* main.m */,
@@ -271,10 +271,10 @@
 			name = DataModels;
 			sourceTree = "<group>";
 		};
-		FC8B4A491857FAC4007C3811 /* Products */ = {
+		FCA2E81A18599B760053C2A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FC8B4A4D1857FAC4007C3811 /* libPKRevealController.a */,
+				FCA2E81E18599B760053C2A8 /* libPKRevealController.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -345,8 +345,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = FC8B4A491857FAC4007C3811 /* Products */;
-					ProjectRef = FC8B4A481857FAC4007C3811 /* PKRevealController.xcodeproj */;
+					ProductGroup = FCA2E81A18599B760053C2A8 /* Products */;
+					ProjectRef = FCA2E81918599B760053C2A8 /* PKRevealController.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -358,11 +358,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		FC8B4A4D1857FAC4007C3811 /* libPKRevealController.a */ = {
+		FCA2E81E18599B760053C2A8 /* libPKRevealController.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libPKRevealController.a;
-			remoteRef = FC8B4A4C1857FAC4007C3811 /* PBXContainerItemProxy */;
+			remoteRef = FCA2E81D18599B760053C2A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

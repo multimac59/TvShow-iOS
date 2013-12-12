@@ -43,10 +43,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
 
-        
-        // Custom initialization
     }
     return self;
 }
@@ -64,13 +61,6 @@
     [self.episodes removeAllObjects];
     [service main];
     [self.table reloadData];
-    
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
     // Importing the data model
     tvshowAppDelegate *appDelegate = (tvshowAppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = [appDelegate managedObjectContext];
@@ -84,38 +74,38 @@
     //Setting Default Values for labels and buttons
     // These checks just check for a rough length as if can be assumed that the text should not be shorter than this
     // If there is no overview
-        if ([series.overview length] < 5) {
-            // Set a default value
-            overview.text = @"No Overview Found";
-            [overview setTextColor:[UIColor grayColor]];
-        }
-        else // Otherwise
-        {
-            // Set the text using the value from the series object
-            overview.text = series.overview;
-            
-        }
+    if ([series.overview length] < 5) {
+        // Set a default value
+        overview.text = @"No Overview Found";
+        [overview setTextColor:[UIColor grayColor]];
+    }
+    else // Otherwise
+    {
+        // Set the text using the value from the series object
+        overview.text = series.overview;
+        
+    }
     // If there is no network value
-        if ([series.network length] < 2) {
-            // Set a default string
-            network.text = @"No Network Found";
-            [network setTextColor:[UIColor grayColor]];
-        }
-        else // Otherwise set the value
-        {
-            network.text = [NSString stringWithFormat:@"Network: %@",series.network];
-        }
+    if ([series.network length] < 2) {
+        // Set a default string
+        network.text = @"No Network Found";
+        [network setTextColor:[UIColor grayColor]];
+    }
+    else // Otherwise set the value
+    {
+        network.text = [NSString stringWithFormat:@"Network: %@",series.network];
+    }
     // If there is no air data
-        if ([series.firstAired length] < 9) {
-            // Set a default
-            airDate.text = @"No Air Date Found";
-            [airDate setTextColor:[UIColor grayColor]];
-        }
-        else
-        {
-            // Set the air date.
-            airDate.text = [NSString stringWithFormat:@"Air Date: %@",series.firstAired];
-        }
+    if ([series.firstAired length] < 9) {
+        // Set a default
+        airDate.text = @"No Air Date Found";
+        [airDate setTextColor:[UIColor grayColor]];
+    }
+    else
+    {
+        // Set the air date.
+        airDate.text = [NSString stringWithFormat:@"Air Date: %@",series.firstAired];
+    }
     // Simple check to see if there is a valid IMDB ID found in the series object
     if ([series.imdb length] > 3) {
         // Set the button title, and action to run the method, LaunchURL
@@ -170,7 +160,7 @@
     if (mutableFetchResults != nil){
         // If the data is successfully retrieved, check that the series has not already been added.
         // For each 'record' of type SeriesEntity [the table] in the array
-       
+        
         for (SeriesEntity * bob in mutableFetchResults){
             // If the seriesid of the current show is equal to the value in the array
             if ([bob.seriesID isEqualToString:self.series.seriesId]) {
@@ -179,7 +169,7 @@
                 // Create an array of buttons for the navbar, the share and add buttons.
                 // The interface builder only allows you to add one button, so this has to be done in code.
                 // Creating buttons:
-               found = TRUE;
+                found = TRUE;
                 UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
                 [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnShare, nil]];
             }
@@ -207,7 +197,7 @@
         dispatch_async(backgroundQueue, ^{
             
             // Create the URL request
-         
+            
             NSString *url = [NSString stringWithFormat:@"http://thetvdb.com/banners/%@", series.banner];
             NSLog(@"URL: %@", url);
             NSError *error = nil;
@@ -220,12 +210,12 @@
             if (!error && image && [image length] > 0){
                 NSLog(@"no errors with data");
                 NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-               
+                
                 // Store to file
                 NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Image.png"];
                 
                 [image writeToFile:filePath options:0 error:&error];
-            
+                
                 // Create the image
                 UIImage *temp = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
                 // Set up a transition
@@ -256,7 +246,13 @@
         [[banner layer ]performSelectorOnMainThread:@selector(addAnimation:forKey:) withObject:animation waitUntilDone:NO];
         [banner performSelectorOnMainThread:@selector(setImage:) withObject:temp waitUntilDone:NO];
         
-    }
+    }}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+
 
 }
 

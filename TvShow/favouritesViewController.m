@@ -31,11 +31,9 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
+- (void)viewWillAppear:(BOOL)animated {
     
+    // Creating the Menu button.
     UIImage * menuBtn = [UIImage imageNamed:@"trayicon"];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuBtn style:UIBarButtonItemStylePlain target:self action:@selector(toggleTray:)];
@@ -44,7 +42,7 @@
     // Importing the data model
     tvshowAppDelegate *appDelegate = (tvshowAppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = [appDelegate managedObjectContext];
-
+    
     // First we Check that the series does not already exist
     // Create a fetch request, think of this like a SQL SELECT statement.
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -55,7 +53,7 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"seriesID" ascending:NO];
     // Execute the request
     [request setSortDescriptors:@[sortDescriptor]];
-
+    
     // Create an array with the the returned values.
     NSError *error = nil;
     NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
@@ -66,10 +64,15 @@
     } else {
         valuesForTable = mutableFetchResults;
     }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
 
 }
 
-
+// This method makes revealcontroller slide to reveal the leftview.
 - (void)toggleTray:(id)sender
 {
     [[self.navigationController revealController] showViewController:[self.navigationController revealController].leftViewController animated:YES completion:nil];
@@ -92,7 +95,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
+    // Return the number of rows in the section via count of rows
     return [self.valuesForTable count];
 }
 
@@ -122,7 +125,7 @@
         // Delete the row from the data source
         
         
-        // Delete the object from the persistant dat store
+        // Delete the object from the persistant data store
         NSManagedObject *temp = valuesForTable[indexPath.row];
         NSError * error;
         [self.managedObjectContext deleteObject:temp];
@@ -149,6 +152,7 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // Pass the series object for the selected cell to the detailed view.
     SeriesEntity *seriesEntity = valuesForTable[[self.tableView indexPathForCell:(UITableViewCell*)sender].row];
     tvseries *series = seriesEntity.series;
 

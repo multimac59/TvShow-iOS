@@ -10,8 +10,8 @@
 
 @interface firstScreenViewController : UIViewController
 
-- (IBAction)onClick:(UIButton *)sender;
 
+- (IBAction)onClick:(UIButton *)sender;
 
 
 @end

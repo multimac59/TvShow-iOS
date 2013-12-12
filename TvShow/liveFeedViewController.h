@@ -12,11 +12,15 @@
 
 @interface liveFeedViewController : UITableViewController <GetLiveFeedDelegate>
 
+// Properties to view the live feed
+
 @property (nonatomic, strong) NSMutableArray *searchResults;
 
 @property (nonatomic) int atIndex;
 
 @property (nonatomic) UIActivityIndicatorView *progress;
+
+// Reveal controller method
 
 - (void)toggleTray:(id)sender;
 @end

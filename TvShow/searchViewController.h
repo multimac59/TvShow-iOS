@@ -6,22 +6,30 @@
 //  Copyright (c) 2013 com.shazib. All rights reserved.
 //
 
+
+
 #import <UIKit/UIKit.h>
 #import "detailedShowViewController.h"
 
-
+// Importing the web service to perform the search
 #import "GetSeriesDelegate.h"
 #import "GetSeries.h"
 
-@interface searchViewController : UITableViewController <UISearchBarDelegate, GetSeriesDelegate>
+// This controller searches for tv shows
 
-@property (nonatomic, retain) IBOutlet UISearchBar *filmSearch;
+@interface searchViewController : UITableViewController <UISearchBarDelegate, GetSeriesDelegate> // Setup delegates
+
+@property (nonatomic, retain) IBOutlet UISearchBar *filmSearch; //Search bar outlet
+
+// Various tableview properties
 
 @property (nonatomic, strong) NSMutableArray *searchResults;
 
 @property (nonatomic) int atIndex;
 
 @property (nonatomic) UIActivityIndicatorView *progress;
+
+// Method for menu button to reveal left controller
 
 - (void)toggleTray:(id)sender;
 

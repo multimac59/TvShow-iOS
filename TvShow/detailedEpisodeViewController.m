@@ -16,6 +16,7 @@
 
 //Set up properties
 @synthesize targetEpisode; //This is set via prepareForSegue
+@synthesize season;
 
 @synthesize seasonLbl;
 @synthesize episodeLbl;
@@ -23,7 +24,9 @@
 @synthesize ratingLbl;
 @synthesize overviewTxt;
 @synthesize banner;
-@synthesize season;
+
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,11 +36,10 @@
     return self;
 }
 
-- (void)viewDidLoad
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-	
-   
+    
+    
     //Setting Title
     self.title = targetEpisode.episodeName;
     
@@ -125,6 +127,12 @@
         [banner performSelectorOnMainThread:@selector(setImage:) withObject:temp waitUntilDone:NO];
         
     }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
 }
 
 - (void)didReceiveMemoryWarning

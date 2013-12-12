@@ -13,9 +13,13 @@
 
 @interface detailedEpisodeViewController : UIViewController
 
+// Parameters passed at segue
+
 @property episode * targetEpisode;
 
 @property NSString *season;
+
+// IBOutlets for view
 
 @property (weak, nonatomic) IBOutlet UILabel *seasonLbl;
 
@@ -28,7 +32,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *ratingLbl;
 
 @property (weak, nonatomic) IBOutlet UITextView *overviewTxt;
-
-
 
 @end

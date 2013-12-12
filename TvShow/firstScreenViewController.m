@@ -55,6 +55,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    
     // Set up an animation to rotate the picture
     CABasicAnimation *rotation;
     rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];

@@ -109,10 +109,16 @@
     [service main];
     [[self tableView] reloadData];
     
+    // Show a progress indicator while searching
+    // create and set the indicator
     progress = [[UIActivityIndicatorView alloc ]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.view addSubview:progress];
+    // Set the size
     progress.center = CGPointMake(self.view.frame.size.width / 2, (self.view.frame.size.height / 8) - 5);
+    // Start the indicator
     [progress startAnimating];
+    
+    // Get rid of keyboard
     [searchBar resignFirstResponder];
     
     
@@ -123,6 +129,7 @@
     [searchResults removeAllObjects];
     [[self tableView] reloadData];
 }
+
 - (void) serviceFinished:(id)service withError:(BOOL)error  {
 
     
@@ -133,10 +140,17 @@
         // If no results found
         if ([searchResults count] == 0){
             NSLog(@"no results");
+            // Create alert
             UIAlertView *noResults = [[UIAlertView alloc] initWithTitle:@"Problem!" message:@"No Search Results Found" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            // Stop Spinner
+            // Show alert
             [noResults performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
-            [progress performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];        } else {
+            [progress performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];
+        }
+        
+        else {
             // Reload tableview
+            // Stop spinner
             [progress performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];
             [self.tableView performSelectorOnMainThread:@selector(reloadData)
                                              withObject:nil
@@ -146,8 +160,11 @@
     }
     else {
         NSLog(@"Error");
+        // IF erro, create alert
         UIAlertView *noResults = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"There was an error with your search" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        //[noResults show];
+        
+        //Show the alert
+        //Stop the spinner
         [noResults performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
         [progress performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];
     }
@@ -160,8 +177,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
+    // Pass the selected tvseries object to the new controller
     ((detailedShowViewController*)segue.destinationViewController).series = searchResults[[self.tableView indexPathForCell:(UITableViewCell*)sender].row];
 }
 

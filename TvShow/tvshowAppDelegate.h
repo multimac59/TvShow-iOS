@@ -20,11 +20,7 @@
 @property (nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-//Attempting PKReveal
-@property UINavigationController *navigationController;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-//- (BOOL) seriesDoesExist:(NSString *)seriesID;
-//- (BOOL) addObjectToStore:(tvseries *)series;
 @end

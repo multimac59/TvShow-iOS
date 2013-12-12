@@ -9,7 +9,7 @@
 #import "searchViewController.h"
 #import "tvseries.h"
 #import "GetSeries.h"
-
+#import "PKRevealController.h"
 @interface searchViewController ()
 
 @end
@@ -33,14 +33,23 @@
 {
     [super viewDidLoad];
 
-    NSLog(@"LOADEDLOADEDLOADED");
-    
     // Setup search bar
     self.filmSearch.delegate = self;
     
-  
+    // Setting up a menu button to launch the left menu
+   // self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(toggleTray:)];
+    
+    UIImage * menuBtn = [UIImage imageNamed:@"trayicon"];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuBtn style:UIBarButtonItemStylePlain target:self action:@selector(toggleTray:)];
+    
 }
 
+- (void)toggleTray:(id)sender
+{
+     [[self.navigationController revealController] showViewController:[self.navigationController revealController].leftViewController animated:YES completion:nil];
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -87,26 +96,18 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
    
-    // Debug Logging.
-   // NSLog(@"search button pressed");
     // Set search term.
     NSString *searchTerm = [searchBar text];
     
     //Create and init service with search term.
     GetSeries *service = [[GetSeries alloc] init];
-   // NSLog(@"create service");
     service.searchTerm = searchTerm;
-   // NSLog(@"set search term");
     [service setDelegate:self];
-   // NSLog(@"set delegate");
     
     [self.searchResults removeAllObjects];
-  //  NSLog(@"objects removed");
     
     [service main];
-  //  NSLog(@"main method executed");
     [[self tableView] reloadData];
-  //  NSLog(@"tableview reloaded in searchbuttonclicked");
     
     progress = [[UIActivityIndicatorView alloc ]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.view addSubview:progress];
@@ -140,7 +141,6 @@
             [self.tableView performSelectorOnMainThread:@selector(reloadData)
                                              withObject:nil
                                           waitUntilDone:NO];
-          //  NSLog(@"tablewview reloaded in servicefinishedwitherror");
         }
         
     }
@@ -157,56 +157,13 @@
 
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-  //  ((detailedShowViewController*)segue.destinationViewController).index = [self.tableView indexPathForCell:(UITableViewCell*)sender].row;
     
     ((detailedShowViewController*)segue.destinationViewController).series = searchResults[[self.tableView indexPathForCell:(UITableViewCell*)sender].row];
 }
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-//MenuViewController *menu = [navController.storyboard instantiateViewControllerWithIdentifier:@"MenuController"];
 
 
 @end

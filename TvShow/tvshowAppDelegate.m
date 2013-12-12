@@ -21,32 +21,23 @@
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 
-@synthesize navigationController = _navigationController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
      
     //Attempting to implement a slide menu via PKRevealController Library
+     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
      
      UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
      
-     
-     searchViewController *searchController = (searchViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"searchController"];
-     UINavigationController *initialNav = (UINavigationController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"initalNav"];
-     
-     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-     
-   //  self.navigationController = [[UINavigationController alloc] initWithRootViewController:myview];
      UIViewController *startController = (UIViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"startController"];
+     UIViewController *firstScreen = (UIViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"firstScreen"];
      
-     
-     PKRevealController *revealController = [PKRevealController revealControllerWithFrontViewController:initialNav leftViewController:startController];
+     PKRevealController *revealController = [PKRevealController revealControllerWithFrontViewController:firstScreen leftViewController:startController];
     
-     //revealController.delegate = self;
-     
-     
      self.window.rootViewController = revealController;
+
      [self.window makeKeyAndVisible];
      
     return YES;

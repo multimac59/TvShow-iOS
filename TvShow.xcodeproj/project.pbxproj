@@ -34,6 +34,7 @@
 		FC8B4A5B1858E9B7007C3811 /* GetEpisodes.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A5A1858E9B7007C3811 /* GetEpisodes.m */; };
 		FC8B4A5F1858E9E2007C3811 /* episode.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A5E1858E9E2007C3811 /* episode.m */; };
 		FC8B4A63185919C3007C3811 /* episodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A62185919C3007C3811 /* episodeViewController.m */; };
+		FCA2E80218595DD70053C2A8 /* firstScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2E80118595DD70053C2A8 /* firstScreenViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		FC8B4A601858EB29007C3811 /* GetEpisodesDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetEpisodesDelegate.h; sourceTree = "<group>"; };
 		FC8B4A61185919C3007C3811 /* episodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = episodeViewController.h; sourceTree = "<group>"; };
 		FC8B4A62185919C3007C3811 /* episodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = episodeViewController.m; sourceTree = "<group>"; };
+		FCA2E80018595DD70053C2A8 /* firstScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = firstScreenViewController.h; sourceTree = "<group>"; };
+		FCA2E80118595DD70053C2A8 /* firstScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = firstScreenViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +177,8 @@
 				FC84CC43183F85D500ACCE26 /* tvshowAppDelegate.h */,
 				FC84CC44183F85D500ACCE26 /* tvshowAppDelegate.m */,
 				FC84CC46183F85D500ACCE26 /* Main.storyboard */,
+				FCA2E80018595DD70053C2A8 /* firstScreenViewController.h */,
+				FCA2E80118595DD70053C2A8 /* firstScreenViewController.m */,
 				FC8B4A61185919C3007C3811 /* episodeViewController.h */,
 				FC8B4A62185919C3007C3811 /* episodeViewController.m */,
 				FC84CC4C183F85D500ACCE26 /* Images.xcassets */,
@@ -369,6 +374,7 @@
 				FC8B4A5B1858E9B7007C3811 /* GetEpisodes.m in Sources */,
 				FC8B49FD1848A6C4007C3811 /* SeriesEntity.m in Sources */,
 				FC8B49F01848A49F007C3811 /* FavouritesModel.xcdatamodeld in Sources */,
+				FCA2E80218595DD70053C2A8 /* firstScreenViewController.m in Sources */,
 				FC8B49EB1845A6B9007C3811 /* GetSeries.m in Sources */,
 				FC84CC74183FDA3E00ACCE26 /* detailedShowViewController.m in Sources */,
 				FC84CC41183F85D500ACCE26 /* main.m in Sources */,

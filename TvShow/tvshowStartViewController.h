@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+
+// This controller is for the left menu
 @interface tvshowStartViewController : UIViewController
 
-- (IBAction)whenClicked:(UIButton *)sender;
+
+// These IBAction's handle clicking the buttons in the menu
+- (IBAction)whenSearchClicked:(UIButton *)sender;
+
+- (IBAction)whenFavouritesClicked:(UIButton *)sender;
 
 
 

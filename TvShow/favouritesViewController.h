@@ -15,4 +15,8 @@
 @property (nonatomic) int atIndex;
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
+
+
+- (void)toggleTray:(id)sender;
+
 @end

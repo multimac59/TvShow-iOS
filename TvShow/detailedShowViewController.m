@@ -6,12 +6,19 @@
 //  Copyright (c) 2013 com.shazib. All rights reserved.
 //
 
+// This controller views the data of a particular show, which is selected in the search, or from the favourites.
+// A series object is passed from the search/favourite controllers
+// The GetEpisode class uses the seriesID of the series object to create an array of all episodes
+// The array is passed in its entirity to the controller
+// This array is then separated into seasons and presented in a tableview
+// The controller also displays various other data contained within the series object
+// The controller internally handles viewing a banner image, using a url from the series object
+// Core data functionallity to save objects is implmented and called via an 'add' button
+// To 'add' button disappears if the program is already in the core data persistant data store.
+// The series object itself is saved
+
+
 #import "detailedShowViewController.h"
-#import "tvshowAppDelegate.h"
-#import "SeriesEntity.h"
-#import "tvseries.h"
-#import "GetEpisodes.h"
-#import "episodeViewController.h"
 
 @interface detailedShowViewController ()
 
@@ -19,7 +26,7 @@
 
 @implementation detailedShowViewController
 
-// Synthesise the IBOutlets and the series objct which is carried over from the search.
+// Synthesise the properties
 @synthesize series;
 @synthesize overview;
 @synthesize banner;
@@ -46,6 +53,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    // Before the view appear, create an instance of GetEpisode
+    // Empty the array (not really needed)
+    // Run the main service
+    // Reload the tableview (also not really needed)
+    
     GetEpisodes * service = [[GetEpisodes alloc] init];
     service.seriesID = self.series.seriesId;
     [service setDelegate:self];
@@ -58,25 +70,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+
     // Importing the data model
     tvshowAppDelegate *appDelegate = (tvshowAppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = [appDelegate managedObjectContext];
     
+    // Setting up PKRevealController
+    [self.navigationController.navigationBar addGestureRecognizer:self.revealController.revealPanGestureRecognizer];
+    
     // Setting title
     navBar.title = series.name;
-    //Setting Default Values
-        // If there is no overview
+    
+    //Setting Default Values for labels and buttons
+    // These checks just check for a rough length as if can be assumed that the text should not be shorter than this
+    // If there is no overview
         if ([series.overview length] < 5) {
             // Set a default value
             overview.text = @"No Overview Found";
         }
         else // Otherwise
         {
+            // Set the text using the value from the series object
             overview.text = series.overview;
             
         }
-        // If there is no network value
+    // If there is no network value
         if ([series.network length] < 2) {
             // Set a default string
             network.text = @"No Network Found";
@@ -85,83 +103,17 @@
         {
             network.text = [NSString stringWithFormat:@"Network: %@",series.network];
         }
+    // If there is no air data
         if ([series.firstAired length] < 9) {
+            // Set a default
             airDate.text = @"No Air Date Found";
         }
         else
         {
+            // Set the air date.
             airDate.text = [NSString stringWithFormat:@"Air Date: %@",series.firstAired];
         }
-    
-
-    // First we Check that the series does not already exist
-    // Create a fetch request, think of this like a SQL SELECT statement.
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"SeriesEntity" inManagedObjectContext:self.managedObjectContext];
-    //Set the table to perform the request on
-	[request setEntity:entity];
-    // Set descriptor for ordering the fetched results
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"seriesID" ascending:NO];
-    // Execute the request
-	[request setSortDescriptors:@[sortDescriptor]];
-    
-    // Create an array with the the returned values.
-    NSError *error = nil;
-	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-	if (mutableFetchResults == nil) {
-		// If there is an error.
-        // Allow the button to be shown, the check is also handled again.
-        // Adding buttons to the navigation bar:
-        // Create an array of buttons for the navbar, the share and add buttons.
-        // The interface builder only allows you to add one button, so this has to be done in code.
-        // Creating buttons:
-        NSLog(@"results are nil, add both");
-        UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
-        UIBarButtonItem *btnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBtnClick)];
-        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnAdd, btnShare, nil]];
-        
-        
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"There was an error setting this favourite" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        // Show the alert and return the method
-        [alert show];
-        return;
-	}
-    
-    BOOL found = FALSE;
-    if (mutableFetchResults != nil){
-        // If the data is successfully retrieved, check that the series has not already been added.
-        // For each 'record' of type SeriesEntity [the table] in the array
-       
-        for (SeriesEntity * bob in mutableFetchResults){
-            // If the seriesid of the current show is equal to the value in the array
-            if ([bob.seriesID isEqualToString:self.series.seriesId]) {
-                // If the show has been added, show only the share button
-                // Adding buttons to the navigation bar:
-                // Create an array of buttons for the navbar, the share and add buttons.
-                // The interface builder only allows you to add one button, so this has to be done in code.
-                // Creating buttons:
-                NSLog(@"found already, add only share");
-               found = TRUE;
-                UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
-                [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnShare, nil]];
-            }
-            
-        }
-        
-        // Otherwise, add both buttons.
-        // Adding buttons to the navigation bar:
-        // Create an array of buttons for the navbar, the share and add buttons.
-        // The interface builder only allows you to add one button, so this has to be done in code.
-        // Creating buttons:
-        if (!found) {
-            NSLog(@"none found, add both");
-            UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
-            UIBarButtonItem *btnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBtnClick)];
-            [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnAdd, btnShare, nil]];
-        }
-    }
-    
-    // Simple check to see if there is a valid IMDB ID found in the object
+    // Simple check to see if there is a valid IMDB ID found in the series object
     if ([series.imdb length] > 3) {
         // Set the button title, and action to run the method, LaunchURL
         [imdb setTitle:@"IMDB Page" forState:UIControlStateNormal];
@@ -179,11 +131,75 @@
         // Add the label to the view
         [self.view addSubview:label];
     }
-
+    
+    
+    // A Check is carried out to see if the series already exists in the data store.
+    // Create a fetch request, think of this like a SQL SELECT statement.
+    // This is so that the 'add' button can be hidden
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"SeriesEntity" inManagedObjectContext:self.managedObjectContext];
+    //Set the table to perform the request on
+	[request setEntity:entity];
+    // Set descriptor for ordering the fetched results
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"seriesID" ascending:NO];
+    // Execute the request
+	[request setSortDescriptors:@[sortDescriptor]];
+    
+    // Create an array with the the returned values.
+    NSError *error = nil;
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    
+    // If there is an error fetching the results
+	if (mutableFetchResults == nil) {
+        // Allow the button to be shown, the check is also handled again.
+        // Adding buttons to the navigation bar:
+        // Create an array of buttons for the navbar, the share and add buttons.
+        // The interface builder only allows you to add one button, so this has to be done in code.
+        // Creating buttons:
+        NSLog(@"results are nil, add both");
+        UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+        UIBarButtonItem *btnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBtnClick)];
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnAdd, btnShare, nil]];
+        return;
+	}
+    BOOL found = FALSE;
+    
+    if (mutableFetchResults != nil){
+        // If the data is successfully retrieved, check that the series has not already been added.
+        // For each 'record' of type SeriesEntity [the table] in the array
+       
+        for (SeriesEntity * bob in mutableFetchResults){
+            // If the seriesid of the current show is equal to the value in the array
+            if ([bob.seriesID isEqualToString:self.series.seriesId]) {
+                // If the show has been added, show only the share button
+                // Adding buttons to the navigation bar:
+                // Create an array of buttons for the navbar, the share and add buttons.
+                // The interface builder only allows you to add one button, so this has to be done in code.
+                // Creating buttons:
+               found = TRUE;
+                UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+                [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnShare, nil]];
+            }
+        }
+        // Otherwise, add both buttons.
+        // Adding buttons to the navigation bar:
+        // Create an array of buttons for the navbar, the share and add buttons.
+        // The interface builder only allows you to add one button, so this has to be done in code.
+        // Creating buttons:
+        if (!found) {
+            NSLog(@"none found, add both");
+            UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+            UIBarButtonItem *btnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBtnClick)];
+            [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:btnAdd, btnShare, nil]];
+        }
+    }
+    
+    
     
     // Setting a banner image
+    // check that a suitable url is present
     if ([series.banner length] > 9) {
-        NSLog(@"banner exists");
+        // Use a grand central dispatch thread
         dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(backgroundQueue, ^{
             
@@ -194,6 +210,7 @@
             NSError *error = nil;
             NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]
                                                         cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+            
             // Create a data object to store the recieved data.
             NSData *image = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:&error];
             
@@ -201,21 +218,23 @@
                 NSLog(@"no errors with data");
                 NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
                
+                // Store to file
                 NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Image.png"];
                 
                 [image writeToFile:filePath options:0 error:&error];
             
-            //UIImage *temp = [[UIImage alloc] initWithData:image];
+                // Create the image
                 UIImage *temp = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
+                // Set up a transition
                 CATransition *animation = [CATransition animation];
-                //[animation setDelegate:self];
-                [animation setDuration:3.0];
+                [animation setDuration:2.0];
                 [animation setType:kCATransitionFromTop];
                 [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
-                 //[[self.banner layer] addAnimation:animation forKey:nil];
                 
+                // View the image and perform the animation on the main thread
                 [[banner layer ]performSelectorOnMainThread:@selector(addAnimation:forKey:) withObject:animation waitUntilDone:NO];
                 [banner performSelectorOnMainThread:@selector(setImage:) withObject:temp waitUntilDone:NO];
+                
                 filePath = nil;
             }
         });
@@ -226,6 +245,7 @@
         // Set default image
         NSLog(@"No Default Picture");
         UIImage *temp = [UIImage imageNamed:@"defaultBanner"];
+        // With the same animation
         CATransition *animation = [CATransition animation];
         [animation setDuration:2.0];
         [animation setType:kCATransitionFromTop];
@@ -235,7 +255,6 @@
         
     }
 
-    
 }
 
 - (void) LaunchURL
@@ -320,13 +339,14 @@
 }
 
 - (void) share {
-    
+    // This method simply create a url for sharing the tvseries
+    // And calls shareText
     NSString *urlBase = @"http://thetvdb.com/?tab=series&id=%@";
     NSString *urlFull = [urlBase stringByAppendingString:self.series.seriesId];
-    NSLog(@"THIS IS TEMPSTRING: %@", urlFull);
     [self shareText:urlFull];
 }
 
+// This method launches the share sheet by adding the url to an array of posible items and presenting the controller
 - (void)shareText:(NSString *)string {
     NSMutableArray *sharingItems = [NSMutableArray new];
     
@@ -337,6 +357,10 @@
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
     [self presentViewController:activityController animated:YES completion:nil];
 }
+
+
+
+/////////////////////////////TABLEVIEW METHODS////////////////
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -370,19 +394,25 @@
 
 }
 
+
+// This method is used to pass a specific set of episodes for a specific season to the episode view controller.
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    NSLog(@"preparing for segue");
-    NSLog(@"season number is: %d", [table indexPathForCell:(UITableViewCell*)sender].row+1);
+   
+   
     NSString *temp = [NSString stringWithFormat:@"season%d",[table indexPathForCell:(UITableViewCell*)sender].row+1];
-                      
+    
     NSMutableArray *seasonToSend = [[NSMutableArray alloc]init];
-  //  [seasonToSend init];
+    
     seasonToSend = [self.seasonsDict valueForKey:temp];
     
     ((episodeViewController*)segue.destinationViewController).episodes = seasonToSend;
-   //((episodeViewController *)segue.destinationViewController).cellTitle = [NSString stringWithFormat:@"randomness"];
+    ((episodeViewController*)segue.destinationViewController).cellTitle = [NSString stringWithFormat:@"Season: %d", ([table indexPathForCell:(UITableViewCell*)sender].row+1)];
 }
+
+
+// This method is called from GetEpisode and performs the separation of episodes into seasons
 
 - (void) serviceFinished:(id)service withError:(BOOL)error  {
     
@@ -460,7 +490,6 @@
         
     }
 }
-
 
 
 - (void)didReceiveMemoryWarning

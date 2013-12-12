@@ -7,8 +7,10 @@
 //
 
 #import "tvshowStartViewController.h"
+
+// Importing the required RevealController
 #import "PKRevealController.h"
-#import "searchViewController.h"
+
 
 @interface tvshowStartViewController ()
 
@@ -28,7 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    // The reveal width is set for the left menu.
+    [self.revealController setMinimumWidth:130 maximumWidth:190 forViewController:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,17 +42,28 @@
 }
 
 
-- (IBAction)whenClicked:(UIButton *)sender {
+- (IBAction)whenSearchClicked:(UIButton *)sender {
+    
+    // When the button is clicked, the front view is changed to the search menu
+    // The storyboard is only used to reference the navigation view via the storyboard identifier
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UINavigationController *navController = (UINavigationController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"initalNav"];
+    
+    self.revealController.frontViewController = navController;
+    
+}
+
+- (IBAction)whenFavouritesClicked:(UIButton *)sender {
+    
+    // When the button is clicked, the front view is changed to the favourites menu
+    // The storyboard is only used to reference the navigation view via the storyboard identifier
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
+    UINavigationController *navController = (UINavigationController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"favouritesNav"];
     
-    searchViewController *searchController = (searchViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"searchController"];
-    
-    self.revealController.frontViewController = searchController;
-     
-    
-    
+    self.revealController.frontViewController = navController;
 }
 
 @end

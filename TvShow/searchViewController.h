@@ -23,4 +23,6 @@
 
 @property (nonatomic) UIActivityIndicatorView *progress;
 
+- (void)toggleTray:(id)sender;
+
 @end

@@ -162,6 +162,10 @@
         self.currentEpisode.airDate = currentElementValue;
         currentElementValue = nil;
     }
+    else if ( [elementName isEqualToString:@"filename"]){
+        self.currentEpisode.imageUrl = currentElementValue;
+        currentElementValue = nil;
+    }
     else if( [elementName isEqualToString:@"Episode"]){
         
         // End of object.

@@ -81,7 +81,7 @@
     
     // Set the values.
     cell.textLabel.text = exampleSeries.name;
-    cell.detailTextLabel.text = exampleSeries.seriesId;
+    cell.detailTextLabel.text = exampleSeries.firstAired;
     return cell;
 }
 

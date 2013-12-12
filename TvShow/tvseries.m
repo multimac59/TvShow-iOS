@@ -18,6 +18,8 @@
 @synthesize imdb;
 @synthesize overview;
 
+
+// These methods are used by the NSTransformer class to convert the object to and from NSdata
 -(void)encodeWithCoder:(NSCoder *)aCoder {
     
     [aCoder encodeObject:seriesId forKey:@"seriesId"];
@@ -43,4 +45,5 @@
     return self;
 }
 
+ 
 @end

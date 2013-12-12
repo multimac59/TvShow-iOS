@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "episode.h"
 @interface episodeViewController : UITableViewController
 
 

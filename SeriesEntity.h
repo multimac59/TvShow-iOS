@@ -10,7 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "TvShow/tvseries.h"
 
-
+// This is the auto generated entity created from the data model
+// Note the custom data type
 
 @interface SeriesEntity : NSManagedObject
 

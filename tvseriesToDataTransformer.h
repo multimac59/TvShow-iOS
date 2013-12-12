@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "tvseries.h"
 
+
+
+// This class inherits from NSValueTransformer and customises to handle the tranformation of my 'tvseries' objects into NSData
 @interface tvseriesToDataTransformer : NSValueTransformer
 
 

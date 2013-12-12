@@ -1,31 +1,23 @@
 //
-//  GetSeries.m
+//  GetLiveFeed.m
 //  TvShow
 //
-//  Created by Shazib Hussain on 27/11/2013.
+//  Created by Shazib Hussain on 12/12/2013.
 //  Copyright (c) 2013 com.shazib. All rights reserved.
 //
 
-#import "GetSeries.h"
+#import "GetLiveFeed.h"
 
-@implementation GetSeries
+@implementation GetLiveFeed
 
-@synthesize searchTerm;
 @synthesize delegate;
-@synthesize shows;
-@synthesize series;
 @synthesize currentElementValue;
+@synthesize episodes;
+@synthesize currrentepisode;
 
 -(void)main {
     
-    
-    NSLog(@"Service has run");
-    
-    // Assignment of required string variables, the API key is not used in the 'GetSeries' search requests.
-    // A url is created by encoding and appending the search term.
-    //NSString *apikey = @"0182647533561FAB";
-    NSString *search_term = [searchTerm stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSString *url = [NSString stringWithFormat:@"http://thetvdb.com/api/GetSeries.php?seriesname=%@", search_term];
+         NSString *url = [NSString stringWithFormat:@"http://services.tvrage.com/feeds/fullschedule.php?country=UK"];
     
     // Although NSURLSession is the preferred way of fetching data in iOS7
     // This class makes use of the NSURLConnection to support backwards compatability
@@ -51,7 +43,7 @@
         
         // If URL request is successful
         if (responseData != nil) {
-           // NSError *error = nil;
+            // NSError *error = nil;
             
             // The XML is parsed used NSXMLParser, a easy to use SAX parser that parses the document bit by bit than as a whole.
             // The parser machine is created and initialised using the data object from the API.
@@ -66,12 +58,12 @@
             
             // Error Checking.
             if (!ok) {
-
+                
                 [delegate serviceFinished:self withError:YES];
             }
-            
+            NSLog(@"finished without error");
             [delegate serviceFinished:self withError:NO];
-           
+            
             
         }
         // If URL request not successful
@@ -83,7 +75,7 @@
 
 // Code executed at start of parsing. Optional.
 - (void)parserDidStartDocument:(NSXMLParser *)parser{
-   NSLog(@"Did start parsing");
+    NSLog(@"Did start parsing");
 }
 
 // Code executed at end of parsing. Optional.
@@ -93,17 +85,16 @@
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     
-    if( [elementName isEqualToString:@"Data"]){
-        NSLog(@"Did Start Data");
-        shows = [[NSMutableArray alloc] init];
+    // If element Schedule is startes, init the array
+    if( [elementName isEqualToString:@"schedule"]){
+        
+        episodes = [[NSMutableArray alloc] init];
     }
-    if( [elementName isEqualToString:@"Series"]){
-        self.series = [[tvseries alloc] init];
+    if ([elementName isEqualToString:@"show"]) {
+        self.currrentepisode = [[episode alloc]init];
+        self.currrentepisode.episodeName = [attributeDict valueForKey:@"name"];
     }
-
-    
 }
-
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
     
@@ -116,79 +107,29 @@
     else {
         currentElementValue = [NSMutableString stringWithFormat:@"%@%@",currentElementValue,string];
     }
-    // NSLog(@"string output: %@", currentElementValue);
-
+    
 }
 
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
-    if ( [elementName isEqualToString:@"Data"]){
-        // End of XML reached.
+    if ( [elementName isEqualToString:@"schedule"]){
         NSLog(@"End of XML");
     }
-    else if( [elementName isEqualToString:@"seriesid"]){
-        self.series.seriesId = [NSString stringWithString:currentElementValue];
-        currentElementValue = nil;
+    else if ([elementName isEqualToString:@"title"])
+    {
+        self.currrentepisode.airDate = currentElementValue;
     }
-    else if( [elementName isEqualToString:@"banner"]){
-        self.series.banner = currentElementValue;
-        currentElementValue = nil;
-    }
-    else if ( [elementName isEqualToString:@"SeriesName"]) {
-        self.series.name = currentElementValue;
-        currentElementValue = nil;
-    }
-    else if( [elementName isEqualToString:@"FirstAired"]){
-        self.series.firstAired = currentElementValue;
-        currentElementValue = nil;
-    }
-    else if( [elementName isEqualToString:@"Network"]){
-        self.series.network = currentElementValue;
-        currentElementValue = nil;
-    }
-    else if( [elementName isEqualToString:@"Overview"]){
-        self.series.overview = currentElementValue;
-        currentElementValue = nil;
-    }
-    else if( [elementName isEqualToString:@"IMDB_ID"]){
-        self.series.imdb = currentElementValue;
-        currentElementValue = nil;
-    }
-    else if( [elementName isEqualToString:@"Series"]){
-        // End of object.
-        [shows addObject:series];
-        series = nil;
+    else if ([elementName isEqualToString:@"show"])
+    {
+        [episodes addObject:currrentepisode];
+        currrentepisode = nil;
         currentElementValue = nil;
     }
     else {
         currentElementValue = nil;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

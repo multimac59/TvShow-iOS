@@ -7,6 +7,7 @@
 //
 
 #import "episodeViewController.h"
+#import "detailedEpisodeViewController.h"
 #import "episode.h"
 
 @interface episodeViewController ()
@@ -32,7 +33,7 @@
     [super viewDidLoad];
 
     // Set the title
-    self.title = cellTitle;
+    self.title = cellTitle; //season passed from detailedshowview
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,23 +55,22 @@
 {
 
     // Return the number of rows in the section.
-    return [episodes count];
+    return [episodes count]; //number of episodes
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   // static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"episodeCell" forIndexPath:indexPath];
     
-    // Configure the cell...
-    //NSLog(@"valueforindex: %d", indexPath.row);
-    
+    // Configure the cell
+    // create temp episode object from array
+    // Set values.
     episode * temp = episodes[indexPath.row];
     NSString *rating = [temp.rating stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     cell.textLabel.text = [NSString stringWithFormat:@"Episode %d",temp.episodeNumber];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Rating: %@",rating];
     
-    NSLog(@"rating:%@",temp.rating);
+    //NSLog(@"rating:%@",temp.rating);
     
     return cell;
 }
@@ -81,8 +81,11 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+  // Pass the episode
+    ((detailedEpisodeViewController*)segue.destinationViewController).targetEpisode = episodes[[self.tableView indexPathForCell:(UITableViewCell*)sender].row];
+    ((detailedEpisodeViewController*)segue.destinationViewController).season = cellTitle;
+
+
 }
 
 

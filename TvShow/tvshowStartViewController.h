@@ -18,6 +18,7 @@
 
 - (IBAction)whenFavouritesClicked:(UIButton *)sender;
 
+- (IBAction)whenLiveFeedClicked:(UIButton *)sender;
 
 
 @end

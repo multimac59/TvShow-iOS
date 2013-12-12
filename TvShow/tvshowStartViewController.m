@@ -66,4 +66,12 @@
     self.revealController.frontViewController = navController;
 }
 
+- (IBAction)whenLiveFeedClicked:(UIButton *)sender {
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UINavigationController *navController = (UINavigationController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"liveFeedController"];
+    
+    self.revealController.frontViewController = navController;}
+
 @end

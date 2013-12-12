@@ -87,6 +87,7 @@
         if ([series.overview length] < 5) {
             // Set a default value
             overview.text = @"No Overview Found";
+            [overview setTextColor:[UIColor grayColor]];
         }
         else // Otherwise
         {
@@ -98,6 +99,7 @@
         if ([series.network length] < 2) {
             // Set a default string
             network.text = @"No Network Found";
+            [network setTextColor:[UIColor grayColor]];
         }
         else // Otherwise set the value
         {
@@ -107,6 +109,7 @@
         if ([series.firstAired length] < 9) {
             // Set a default
             airDate.text = @"No Air Date Found";
+            [airDate setTextColor:[UIColor grayColor]];
         }
         else
         {
@@ -127,7 +130,7 @@
         // Set the text, colour etc.
         label.text = @"No IMDB Page Found";
         label.backgroundColor = [UIColor whiteColor];
-        label.textColor = [UIColor blackColor];
+        label.textColor = [UIColor grayColor];
         // Add the label to the view
         [self.view addSubview:label];
     }
@@ -444,7 +447,7 @@
         self.numberOfSeasons = final.seasonNumber;
         self.seasonsDict = [[NSMutableDictionary alloc] initWithCapacity:numberOfSeasons];
         
-        NSLog(@"number of seasons: %d", self.numberOfSeasons);
+        //NSLog(@"number of seasons: %d", self.numberOfSeasons);
         
         for (int a = 1; a <= numberOfSeasons; a++) {
             //NSLog(@"A BEFORE:%d",a);

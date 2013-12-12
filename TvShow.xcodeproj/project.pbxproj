@@ -35,6 +35,10 @@
 		FC8B4A5F1858E9E2007C3811 /* episode.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A5E1858E9E2007C3811 /* episode.m */; };
 		FC8B4A63185919C3007C3811 /* episodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B4A62185919C3007C3811 /* episodeViewController.m */; };
 		FCA2E80218595DD70053C2A8 /* firstScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2E80118595DD70053C2A8 /* firstScreenViewController.m */; };
+		FCA2E8061859722B0053C2A8 /* detailedEpisodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2E8051859722B0053C2A8 /* detailedEpisodeViewController.m */; };
+		FCA2E80918598A9E0053C2A8 /* welcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2E80818598A9E0053C2A8 /* welcomeView.m */; };
+		FCA2E80C18598EB70053C2A8 /* liveFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2E80B18598EB70053C2A8 /* liveFeedViewController.m */; };
+		FCA2E81018598F260053C2A8 /* GetLiveFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2E80F18598F260053C2A8 /* GetLiveFeed.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +107,15 @@
 		FC8B4A62185919C3007C3811 /* episodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = episodeViewController.m; sourceTree = "<group>"; };
 		FCA2E80018595DD70053C2A8 /* firstScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = firstScreenViewController.h; sourceTree = "<group>"; };
 		FCA2E80118595DD70053C2A8 /* firstScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = firstScreenViewController.m; sourceTree = "<group>"; };
+		FCA2E8041859722B0053C2A8 /* detailedEpisodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = detailedEpisodeViewController.h; sourceTree = "<group>"; };
+		FCA2E8051859722B0053C2A8 /* detailedEpisodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailedEpisodeViewController.m; sourceTree = "<group>"; };
+		FCA2E80718598A9E0053C2A8 /* welcomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = welcomeView.h; sourceTree = "<group>"; };
+		FCA2E80818598A9E0053C2A8 /* welcomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = welcomeView.m; sourceTree = "<group>"; };
+		FCA2E80A18598EB70053C2A8 /* liveFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = liveFeedViewController.h; sourceTree = "<group>"; };
+		FCA2E80B18598EB70053C2A8 /* liveFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = liveFeedViewController.m; sourceTree = "<group>"; };
+		FCA2E80D18598F030053C2A8 /* GetLiveFeedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetLiveFeedDelegate.h; sourceTree = "<group>"; };
+		FCA2E80E18598F260053C2A8 /* GetLiveFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetLiveFeed.h; sourceTree = "<group>"; };
+		FCA2E80F18598F260053C2A8 /* GetLiveFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetLiveFeed.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,8 +190,14 @@
 				FC84CC43183F85D500ACCE26 /* tvshowAppDelegate.h */,
 				FC84CC44183F85D500ACCE26 /* tvshowAppDelegate.m */,
 				FC84CC46183F85D500ACCE26 /* Main.storyboard */,
+				FCA2E80A18598EB70053C2A8 /* liveFeedViewController.h */,
+				FCA2E80B18598EB70053C2A8 /* liveFeedViewController.m */,
+				FCA2E8041859722B0053C2A8 /* detailedEpisodeViewController.h */,
+				FCA2E8051859722B0053C2A8 /* detailedEpisodeViewController.m */,
 				FCA2E80018595DD70053C2A8 /* firstScreenViewController.h */,
 				FCA2E80118595DD70053C2A8 /* firstScreenViewController.m */,
+				FCA2E80718598A9E0053C2A8 /* welcomeView.h */,
+				FCA2E80818598A9E0053C2A8 /* welcomeView.m */,
 				FC8B4A61185919C3007C3811 /* episodeViewController.h */,
 				FC8B4A62185919C3007C3811 /* episodeViewController.m */,
 				FC84CC4C183F85D500ACCE26 /* Images.xcassets */,
@@ -226,6 +245,9 @@
 				FC8B49E81845A6A5007C3811 /* GetSeriesDelegate.h */,
 				FC8B49E91845A6B9007C3811 /* GetSeries.h */,
 				FC8B49EA1845A6B9007C3811 /* GetSeries.m */,
+				FCA2E80D18598F030053C2A8 /* GetLiveFeedDelegate.h */,
+				FCA2E80E18598F260053C2A8 /* GetLiveFeed.h */,
+				FCA2E80F18598F260053C2A8 /* GetLiveFeed.m */,
 				FC8B4A591858E9B7007C3811 /* GetEpisodes.h */,
 				FC8B4A5A1858E9B7007C3811 /* GetEpisodes.m */,
 				FC8B4A601858EB29007C3811 /* GetEpisodesDelegate.h */,
@@ -377,15 +399,19 @@
 				FCA2E80218595DD70053C2A8 /* firstScreenViewController.m in Sources */,
 				FC8B49EB1845A6B9007C3811 /* GetSeries.m in Sources */,
 				FC84CC74183FDA3E00ACCE26 /* detailedShowViewController.m in Sources */,
+				FCA2E81018598F260053C2A8 /* GetLiveFeed.m in Sources */,
 				FC84CC41183F85D500ACCE26 /* main.m in Sources */,
 				FC8B4A63185919C3007C3811 /* episodeViewController.m in Sources */,
+				FCA2E80C18598EB70053C2A8 /* liveFeedViewController.m in Sources */,
 				FC8B4A5F1858E9E2007C3811 /* episode.m in Sources */,
 				FC84CC6B183F9E9A00ACCE26 /* tvseries.m in Sources */,
 				FC8B4A5618581632007C3811 /* favouritesViewController.m in Sources */,
 				FC84CC77183FE2A600ACCE26 /* searchViewController.m in Sources */,
 				FC8B4A441849272F007C3811 /* tvseriesToDataTransformer.m in Sources */,
 				FC8B4A53185806D3007C3811 /* tvshowStartViewController.m in Sources */,
+				FCA2E8061859722B0053C2A8 /* detailedEpisodeViewController.m in Sources */,
 				FC84CC45183F85D500ACCE26 /* tvshowAppDelegate.m in Sources */,
+				FCA2E80918598A9E0053C2A8 /* welcomeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

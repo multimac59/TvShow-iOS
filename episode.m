@@ -17,5 +17,6 @@
 @synthesize overview;
 @synthesize rating;
 @synthesize airDate;
+@synthesize imageUrl;
 
 @end

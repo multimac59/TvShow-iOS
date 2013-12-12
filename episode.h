@@ -24,5 +24,7 @@
 
 @property NSString *rating;
 
+@property NSString *imageUrl;
+
 
 @end

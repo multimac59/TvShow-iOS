@@ -105,7 +105,7 @@
     tvseries * series = exampleSeries.series;
     // Set the values.
     cell.textLabel.text = series.name;
-    cell.detailTextLabel.text = series.seriesId;
+    cell.detailTextLabel.text = series.firstAired;
     return cell;
 }
 
